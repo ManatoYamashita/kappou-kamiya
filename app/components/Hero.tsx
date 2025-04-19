@@ -15,7 +15,7 @@ export default function Hero() {
       {/* ヒーロー画像 */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/ja-placeholder.svg"
+          src="/images/ja-placeholder.webp"
           alt="季節の料理"
           fill
           priority

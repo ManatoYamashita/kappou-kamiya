@@ -9,28 +9,28 @@ const menuItems = [
     title: 'おまかせコース',
     description: '四季折々の厳選素材を使用した当店の真髄を味わうコース',
     price: '15,000円〜',
-    image: '/images/ja-placeholder.svg',
+    image: '/images/ja-placeholder.webp',
   },
   {
     id: 2,
     title: '季節の懐石',
     description: '伝統的な懐石料理の流れに沿った季節感あふれる献立',
     price: '12,000円〜',
-    image: '/images/ja-placeholder.svg',
+    image: '/images/ja-placeholder.webp',
   },
   {
     id: 3,
     title: '昼の特選膳',
     description: '厳選した食材で作る日替わりの特選ランチ',
     price: '5,000円〜',
-    image: '/images/ja-placeholder.svg',
+    image: '/images/ja-placeholder.webp',
   },
   {
     id: 4,
     title: '日本酒ペアリング',
     description: 'お料理に合わせた厳選日本酒のペアリング',
     price: '6,000円',
-    image: '/images/ja-placeholder.svg',
+    image: '/images/ja-placeholder.webp',
   },
 ];
 

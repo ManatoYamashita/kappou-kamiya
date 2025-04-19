@@ -39,7 +39,7 @@ export default function Concept() {
             <div className="animate-on-scroll opacity-0" style={{ animationDelay: '0.2s' }}>
               <div className="relative aspect-square overflow-hidden">
                 <Image
-                  src="/images/ja-placeholder.svg"
+                  src="/images/ja-placeholder.webp"
                   alt="一期一会のおもてなし"
                   fill
                   className="object-cover"
