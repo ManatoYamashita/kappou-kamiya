@@ -45,7 +45,7 @@ export default function Header() {
             <li><Link href="/#menu" className="hover:text-accent transition-colors duration-300">お品書き</Link></li>
             <li><Link href="/#info" className="hover:text-accent transition-colors duration-300">店舗情報</Link></li>
             <li><Link href="/#access" className="hover:text-accent transition-colors duration-300">アクセス</Link></li>
-            <li><Link href="tel:03-1234-5678" className="hover:text-accent transition-colors duration-300">ご予約</Link></li>
+            <li><Link href="tel:050-5487-4317" className="hover:text-accent transition-colors duration-300">ご予約</Link></li>
           </ul>
         </nav>
 
@@ -58,7 +58,7 @@ export default function Header() {
                 <li><Link href="/#menu" onClick={() => setIsMenuOpen(false)} className="block py-2">お品書き</Link></li>
                 <li><Link href="/#info" onClick={() => setIsMenuOpen(false)} className="block py-2">店舗情報</Link></li>
                 <li><Link href="/#access" onClick={() => setIsMenuOpen(false)} className="block py-2">アクセス</Link></li>
-                <li><Link href="tel:03-1234-5678" onClick={() => setIsMenuOpen(false)} className="block py-2">ご予約</Link></li>
+                <li><Link href="tel:050-5487-4317" onClick={() => setIsMenuOpen(false)} className="block py-2">ご予約</Link></li>
               </ul>
             </nav>
           </div>

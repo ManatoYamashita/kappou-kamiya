@@ -6,32 +6,41 @@ import Image from 'next/image';
 const menuItems = [
   {
     id: 1,
-    title: 'おまかせコース',
-    description: '四季折々の厳選素材を使用した当店の真髄を味わうコース',
-    price: '15,000円〜',
+    title: '季節の懐石 花コース',
+    description: '四季折々の旬の食材を使用した本格懐石コース（全8品）',
+    price: '8,800円',
     image: '/images/ja-placeholder.webp',
   },
   {
     id: 2,
-    title: '季節の懐石',
-    description: '伝統的な懐石料理の流れに沿った季節感あふれる献立',
-    price: '12,000円〜',
+    title: '季節の懐石 月コース',
+    description: '伝統的な懐石料理の流れに沿った季節感あふれる献立（全8品）',
+    price: '7,150円',
     image: '/images/ja-placeholder.webp',
   },
   {
     id: 3,
-    title: '昼の特選膳',
-    description: '厳選した食材で作る日替わりの特選ランチ',
-    price: '5,000円〜',
+    title: '牛しゃぶしゃぶ・橘コース',
+    description: '厳選した牛肉を使用した贅沢なしゃぶしゃぶコース',
+    price: '7,700円',
     image: '/images/ja-placeholder.webp',
   },
   {
     id: 4,
-    title: '日本酒ペアリング',
-    description: 'お料理に合わせた厳選日本酒のペアリング',
-    price: '6,000円',
+    title: 'お祝い・法事用特別コース',
+    description: '伊勢海老や赤飯など、特別な席に相応しい祝いの品々',
+    price: '要相談',
     image: '/images/ja-placeholder.webp',
   },
+];
+
+const otherMenus = [
+  { id: 1, name: '懐石コース' },
+  { id: 2, name: 'お祝い・ご法事' },
+  { id: 3, name: '牛しゃぶ・ふぐ' },
+  { id: 4, name: '逸品料理' },
+  { id: 5, name: '昼ごはん/ランチ' },
+  { id: 6, name: 'テイクアウト出前' },
 ];
 
 export default function Menu() {
@@ -84,18 +93,32 @@ export default function Menu() {
               <div className="p-6">
                 <h3 className="font-mincho text-xl mb-2">{item.title}</h3>
                 <p className="text-paper/80 mb-4 text-sm">{item.description}</p>
-                <p className="font-mincho text-right text-accent">{item.price}</p>
+                <p className="font-mincho text-right text-accent">{item.price}<span className="text-sm ml-1">/1名様</span></p>
               </div>
             </div>
           ))}
         </div>
         
-        <div className="text-center mt-16 animate-on-scroll opacity-0" style={{ animationDelay: '0.6s' }}>
+        <div className="max-w-5xl mx-auto mt-16 animate-on-scroll opacity-0" style={{ animationDelay: '0.6s' }}>
+          <h3 className="font-mincho text-2xl text-center mb-8">
+            <span className="inline-block border-b border-accent pb-2">その他メニュー</span>
+          </h3>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {otherMenus.map((menu) => (
+              <div key={menu.id} className="border border-accent/30 p-4 text-center">
+                <p className="font-mincho">{menu.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="text-center mt-16 animate-on-scroll opacity-0" style={{ animationDelay: '0.8s' }}>
           <p className="text-paper/80 mb-4">
             ※ 仕入れ状況により、内容が変更になる場合がございます。<br />
             ※ 料金は全て税込・サービス料10%別途頂戴いたします。
           </p>
-          <p className="font-mincho text-lg">ご予約・お問い合わせ: 03-1234-5678</p>
+          <p className="font-mincho text-lg">ご予約・お問い合わせ: 050-5487-4317</p>
         </div>
       </div>
     </section>

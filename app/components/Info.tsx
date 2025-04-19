@@ -46,14 +46,35 @@ export default function Info() {
                   <tr className="border-b border-ink/10">
                     <th className="py-4 pr-4 align-top">住所</th>
                     <td className="py-4">
-                      〒100-0001<br />
-                      東京都千代田区丸の内1-1-1<br />
-                      丸の内センタービル 8F
+                      〒332-0017<br />
+                      埼玉県川口市栄町2-1-26<br />
+                      神谷ビル1･2F
                     </td>
                   </tr>
                   <tr className="border-b border-ink/10">
                     <th className="py-4 pr-4 align-top">電話番号</th>
-                    <td className="py-4">03-1234-5678</td>
+                    <td className="py-4">050-5487-4317</td>
+                  </tr>
+                  <tr className="border-b border-ink/10">
+                    <th className="py-4 pr-4 align-top">座席数</th>
+                    <td className="py-4">
+                      総席数120席<br />
+                      宴会最大人数 着席時64名
+                    </td>
+                  </tr>
+                  <tr className="border-b border-ink/10">
+                    <th className="py-4 pr-4 align-top">個室</th>
+                    <td className="py-4">
+                      座敷個室・テーブル個室・掘りごたつ個室あり<br />
+                      （2名～64名様用）
+                    </td>
+                  </tr>
+                  <tr className="border-b border-ink/10">
+                    <th className="py-4 pr-4 align-top">決済方法</th>
+                    <td className="py-4">
+                      クレジットカード：VISA、MasterCard、JCB<br />
+                      電子マネー：楽天ペイ、PayPay
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -66,23 +87,28 @@ export default function Info() {
                   <tr className="border-b border-ink/10">
                     <th className="py-4 pr-4 align-top w-1/3">ランチ</th>
                     <td className="py-4">
-                      11:30〜14:00 (L.O.13:30)<br />
-                      ※土日祝のみ
+                      水～日・祝前日・祝日<br />
+                      11:30～14:30 (L.O.14:00)<br />
+                      ※13:50までに入店
                     </td>
                   </tr>
                   <tr className="border-b border-ink/10">
                     <th className="py-4 pr-4 align-top">ディナー</th>
-                    <td className="py-4">17:30〜22:00 (L.O.21:00)</td>
+                    <td className="py-4">
+                      火～日・祝前日・祝日<br />
+                      16:00～22:00 (L.O.20:30、ドリンクL.O.21:30)
+                    </td>
                   </tr>
                   <tr className="border-b border-ink/10">
                     <th className="py-4 pr-4 align-top">定休日</th>
-                    <td className="py-4">月曜日（祝日の場合は翌日）</td>
+                    <td className="py-4">月曜日</td>
                   </tr>
                   <tr className="border-b border-ink/10">
                     <th className="py-4 pr-4 align-top">予約方法</th>
                     <td className="py-4">
                       お電話またはオンライン予約<br />
-                      ※ディナーは3日前までのご予約をお願いしております
+                      050-5487-4317<br />
+                      空席確認・ネット予約あり
                     </td>
                   </tr>
                 </tbody>
@@ -101,7 +127,7 @@ export default function Info() {
           <div className="max-w-4xl mx-auto">
             <div className="aspect-[16/9] w-full mb-12">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.9483209823213!2d139.76431797571106!3d35.68080037259424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x277c49ba34ed38!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1718530124!5m2!1sja!2sjp" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3235.4022222362703!2d139.7133671768275!3d35.80212491691642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018c11c7ebc3e99%3A0x5de19cbdcb1a7d9b!2z5pel5pys44CB44CSMzMyLTAwMTcg5Z-8546J55yM5bed5Y-j5biC5qCE55S677yS5LiB55uu77yR4oiS77yS77yW!5e0!3m2!1sja!2sjp!4v1718530124!5m2!1sja!2sjp" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
@@ -117,18 +143,15 @@ export default function Info() {
               <div>
                 <h3 className="font-mincho text-xl mb-6 border-l-4 border-accent pl-3">電車でお越しの方</h3>
                 <ul className="space-y-4 text-paper/80">
-                  <li>東京メトロ丸ノ内線「東京駅」より徒歩3分</li>
-                  <li>JR「東京駅」丸の内北口より徒歩5分</li>
-                  <li>東京メトロ千代田線「二重橋前駅」より徒歩7分</li>
+                  <li>JR京浜東北線 川口駅 徒歩5分</li>
                 </ul>
               </div>
               
               <div>
                 <h3 className="font-mincho text-xl mb-6 border-l-4 border-accent pl-3">お車でお越しの方</h3>
                 <ul className="space-y-4 text-paper/80">
-                  <li>丸の内パーキングをご利用ください（有料）</li>
-                  <li>当店ご利用のお客様には、駐車場サービス券を発行しております</li>
-                  <li>詳細はスタッフにお尋ねください</li>
+                  <li>専用無料駐車場6台あり（駅前のため限りあり）</li>
+                  <li>駐車場のご利用をご希望の方は予約時にお伝えください</li>
                 </ul>
               </div>
             </div>

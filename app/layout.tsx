@@ -16,9 +16,9 @@ const mincho = Shippori_Mincho({
 });
 
 export const metadata: Metadata = {
-  title: "割烹 神谷 | 伝統と季節の味わい",
-  description: "東京で四季の移ろいを感じる本格的な日本料理。旬の食材と熟練の技で織りなす割烹料理をご堪能ください。",
-  keywords: "割烹, 神谷, 日本料理, 懐石, 東京, 旬, 和食",
+  title: "割烹 神谷 | 三代続く川口の老舗日本料理店",
+  description: "埼玉県川口市で四季折々の食材が織り成す逸品を和の空間で味わえる老舗割烹料理店。ご接待・結納・法事・歓送迎会などに最適な空間をご用意しております。",
+  keywords: "割烹, 神谷, 日本料理, 懐石, 川口, 埼玉, 和食, 個室, 接待, 法事",
 };
 
 export default function RootLayout({

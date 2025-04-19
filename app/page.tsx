@@ -7,8 +7,8 @@ import Info from './components/Info';
 import Footer from './components/Footer';
 
 export const metadata: Metadata = {
-  title: '割烹 神谷 | 伝統と季節の味わい',
-  description: '東京で四季の移ろいを感じる本格的な日本料理。旬の食材と熟練の技で織りなす割烹料理をご堪能ください。',
+  title: '割烹 神谷 | 三代続く川口の老舗日本料理店',
+  description: '埼玉県川口市で四季折々の食材が織り成す逸品を和の空間で味わえる老舗割烹料理店。ご接待・結納・法事・歓送迎会などに最適な空間をご用意しております。',
 };
 
 export default function Home() {

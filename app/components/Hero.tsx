@@ -35,8 +35,8 @@ export default function Hero() {
           
           <div className="mt-8 px-4">
             <p className="text-lg md:text-xl font-mincho tracking-wider leading-relaxed">
-              移り変わる四季を<br className="md:hidden" />
-              食材と酒で味わう
+              三代続く川口の老舗<br className="md:hidden" />
+              誠心誠意のおもてなし
             </p>
           </div>
         </div>
