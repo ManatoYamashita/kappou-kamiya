@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 割烹 神谷 Website
 
-## Getting Started
+[![Next.js](https://img.shields.io/badge/Next.js-15.3.1-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.0.0-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
+[![React](https://img.shields.io/badge/React-19.0.0-61DAFB?style=flat&logo=react)](https://reactjs.org/)
 
-First, run the development server:
+## About
+
+三代続く川口の老舗日本料理店「割烹 神谷」の公式ウェブサイトです。四季折々の食材が織り成す逸品を和の空間で味わえる割烹料理店として、お客様にご利用いただくための情報を提供しています。
+ご依頼で制作したWebサイトです。
+
+## Function
+
+- レスポンシブデザイン（スマートフォン、タブレット、PCに対応）
+- アニメーション効果によるリッチなユーザー体験
+- コンテンツの明確な区分け（店舗理念、お品書き、店舗情報、アクセス情報）
+
+## Feature
+
+- HeadlessCMSでのコンテンツ管理
+- EC機能
+
+## Setup
+
+### Dependency
+
+- Node.js (v18以上)
+- npm (v9以上)
+
+### Installation
+
+```bash
+# リポジトリのクローン
+git clone https://github.com/yourusername/kappou-kamiya.git
+cd kappou-kamiya
+
+# 依存関係のインストール
+npm install
+```
+
+### Run dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000) にアクセスして結果を確認できます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **フレームワーク**: [Next.js 15.3.1](https://nextjs.org/)
+- **スタイリング**: [TailwindCSS 4](https://tailwindcss.com/)
+- **フォント**: Noto Sans JP, Shippori Mincho (Google Fonts)
+- **アニメーション**: CSS Transitions, Intersection Observer API
 
-## Learn More
+## Projects
 
-To learn more about Next.js, take a look at the following resources:
+```
+kappou-kamiya/
+├── app/                # Nextアプリケーションコード
+│   ├── components/     # Reactコンポーネント
+│   │   ├── Concept.tsx # 店舗理念セクション
+│   │   ├── Footer.tsx  # フッター
+│   │   ├── Header.tsx  # ヘッダー
+│   │   ├── Hero.tsx    # ヒーローセクション
+│   │   ├── Info.tsx    # 店舗情報セクション
+│   │   └── Menu.tsx    # メニューセクション
+│   ├── globals.css     # グローバルCSS
+│   ├── layout.tsx      # レイアウトコンポーネント
+│   └── page.tsx        # メインページコンポーネント
+├── public/             # 静的ファイル
+│   └── images/         # 画像ファイル
+└── package.json        # 依存関係と設定
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contents
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+サイトのコンテンツを更新するには、以下のファイルを編集してください：
+(Headless CMSでの管理に移行予定)
 
-## Deploy on Vercel
+- `app/components/Menu.tsx` - メニュー情報の更新
+- `app/components/Info.tsx` - 店舗情報・営業時間の更新
+- `app/components/Concept.tsx` - 店舗理念の更新
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+このプロジェクトは [Vercel](https://vercel.com) でのデプロイを想定しています。
+
+```bash
+# ビルド
+npm run build
+
+# ローカルでの動作確認
+npm run start
+```
+
+## LICENSE
+
+© 2024 割烹 神谷 All Rights Reserved.
