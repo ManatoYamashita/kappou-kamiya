@@ -16,12 +16,22 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-paper/90 backdrop-blur-sm py-3' : 'bg-transparent py-5'}`}>
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'bg-paper/95 backdrop-blur-md py-3 shadow-sm' 
+          : 'bg-transparent py-6'
+      }`}
+    >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link href="/" className="relative z-50">
-          <div className="flex flex-col items-center">
+        {/* ロゴ */}
+        <Link href="/" className="relative z-50 group">
+          <div className="flex flex-col items-center relative">
+            {/* 装飾線（ホバー時に表示） */}
+            <div className="absolute -inset-3 border border-accent/0 group-hover:border-accent/20 transition-all duration-500"></div>
+            
             <h1 className="font-mincho text-xl md:text-2xl tracking-wider">
-              <span className="text-sm tracking-widest block text-center mb-1">割烹</span>
+              <span className="text-sm tracking-[0.3em] block text-center mb-1 opacity-80">割烹</span>
               神谷
             </h1>
           </div>
@@ -29,36 +39,88 @@ export default function Header() {
 
         {/* モバイルメニューボタン */}
         <button
-          className="md:hidden relative z-50 w-8 h-8 flex flex-col justify-center items-center"
+          className={`md:hidden relative z-50 w-10 h-10 flex flex-col justify-center items-center overflow-hidden transition-colors duration-300 ${
+            isMenuOpen ? 'text-ink' : isScrolled ? 'text-ink' : 'text-paper'
+          }`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label={isMenuOpen ? 'メニューを閉じる' : 'メニューを開く'}
         >
-          <span className={`block w-6 h-0.5 bg-ink transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-0.5' : '-translate-y-1'}`}></span>
-          <span className={`block w-6 h-0.5 bg-ink transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-          <span className={`block w-6 h-0.5 bg-ink transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-1'}`}></span>
+          <span 
+            className={`block w-6 h-0.5 bg-current transition-all duration-500 transform ${
+              isMenuOpen ? 'rotate-45 translate-y-0.5' : '-translate-y-1.5'
+            }`}
+          ></span>
+          <span 
+            className={`block w-6 h-0.5 bg-current transition-all duration-300 ${
+              isMenuOpen ? 'opacity-0 translate-x-3' : 'opacity-100'
+            }`}
+          ></span>
+          <span 
+            className={`block w-6 h-0.5 bg-current transition-all duration-500 transform ${
+              isMenuOpen ? '-rotate-45 -translate-y-0.5' : 'translate-y-1.5'
+            }`}
+          ></span>
         </button>
 
         {/* デスクトップナビゲーション */}
-        <nav className="hidden md:block">
-          <ul className="flex space-x-8 font-mincho tracking-wider text-sm">
-            <li><Link href="/#concept" className="hover:text-accent transition-colors duration-300">店舗理念</Link></li>
-            <li><Link href="/#menu" className="hover:text-accent transition-colors duration-300">お品書き</Link></li>
-            <li><Link href="/#info" className="hover:text-accent transition-colors duration-300">店舗情報</Link></li>
-            <li><Link href="/#access" className="hover:text-accent transition-colors duration-300">アクセス</Link></li>
-            <li><Link href="tel:050-5487-4317" className="hover:text-accent transition-colors duration-300">ご予約</Link></li>
+        <nav className={`hidden md:block transition-colors duration-300 ${
+          isScrolled ? 'text-ink' : 'text-paper'
+        }`}>
+          <ul className="flex space-x-10 font-mincho tracking-[0.15em] text-sm">
+            {[
+              { href: '/#concept', label: '店舗理念' },
+              { href: '/#menu', label: 'お品書き' },
+              { href: '/#info', label: '店舗情報' },
+              { href: '/#access', label: 'アクセス' },
+              { href: 'tel:050-5487-4317', label: 'ご予約' }
+            ].map((item, index) => (
+              <li key={index} className="relative group">
+                <Link 
+                  href={item.href} 
+                  className="py-2 block hover:text-accent transition-colors duration-300"
+                >
+                  {item.label}
+                </Link>
+                {/* ホバー時の下線装飾 */}
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-accent transition-all duration-300 group-hover:w-full"></span>
+              </li>
+            ))}
           </ul>
         </nav>
 
         {/* モバイルメニュー */}
-        <div className={`fixed inset-0 bg-paper z-40 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden`}>
-          <div className="h-full flex flex-col justify-center items-center">
+        <div className={`fixed inset-0 bg-paper z-40 transform transition-all duration-500 ease-in-out ${
+          isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-95'
+        } md:hidden`}>
+          {/* 和紙テクスチャの背景 */}
+          <div className="absolute inset-0 paper-texture"></div>
+          
+          {/* 装飾パターン */}
+          <div className="absolute top-0 right-0 w-32 h-32 japanese-pattern opacity-10"></div>
+          <div className="absolute bottom-0 left-0 w-32 h-32 japanese-pattern opacity-10"></div>
+          
+          <div className="h-full flex flex-col justify-center items-center relative">
             <nav>
               <ul className="flex flex-col space-y-8 font-mincho text-lg text-center">
-                <li><Link href="/#concept" onClick={() => setIsMenuOpen(false)} className="block py-2">店舗理念</Link></li>
-                <li><Link href="/#menu" onClick={() => setIsMenuOpen(false)} className="block py-2">お品書き</Link></li>
-                <li><Link href="/#info" onClick={() => setIsMenuOpen(false)} className="block py-2">店舗情報</Link></li>
-                <li><Link href="/#access" onClick={() => setIsMenuOpen(false)} className="block py-2">アクセス</Link></li>
-                <li><Link href="tel:050-5487-4317" onClick={() => setIsMenuOpen(false)} className="block py-2">ご予約</Link></li>
+                {[
+                  { href: '/#concept', label: '店舗理念' },
+                  { href: '/#menu', label: 'お品書き' },
+                  { href: '/#info', label: '店舗情報' },
+                  { href: '/#access', label: 'アクセス' },
+                  { href: 'tel:050-5487-4317', label: 'ご予約' }
+                ].map((item, index) => (
+                  <li key={index} className="relative">
+                    <Link 
+                      href={item.href} 
+                      onClick={() => setIsMenuOpen(false)} 
+                      className="py-2 px-4 block transition-colors duration-300 hover:text-accent"
+                    >
+                      {item.label}
+                    </Link>
+                    {/* 装飾線 */}
+                    <div className="w-8 h-px bg-accent/30 mx-auto mt-2"></div>
+                  </li>
+                ))}
               </ul>
             </nav>
           </div>
@@ -66,4 +128,4 @@ export default function Header() {
       </div>
     </header>
   );
-} 
+}
