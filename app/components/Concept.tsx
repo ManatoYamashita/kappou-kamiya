@@ -28,7 +28,7 @@ export default function Concept() {
   }, []);
   
   return (
-    <section ref={sectionRef} id="concept" className="py-24 md:py-32">
+    <section ref={sectionRef} id="concept" className="py-24 md:py-32 bg-[#0B0B09] text-white">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-mincho text-3xl md:text-4xl text-center mb-12 animate-on-scroll opacity-0">
@@ -39,7 +39,7 @@ export default function Concept() {
             <div className="animate-on-scroll opacity-0" style={{ animationDelay: '0.2s' }}>
               <div className="relative aspect-square overflow-hidden">
                 <Image
-                  src="/images/ja-placeholder.webp"
+                  src="/images/kamiya-sake.webp"
                   alt="三代続く川口の老舗日本料理店"
                   fill
                   className="object-cover"

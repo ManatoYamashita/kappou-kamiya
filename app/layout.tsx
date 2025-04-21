@@ -30,8 +30,9 @@ export default function RootLayout({
     <html lang="ja">
       <body
         className={`${notoSans.variable} ${mincho.variable} font-sans antialiased bg-paper text-ink`}
+        suppressHydrationWarning
       >
-        <div className="mx-auto max-w-screen-xl">
+        <div className="mx-auto">
           {children}
         </div>
       </body>

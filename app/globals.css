@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8f6f1;
+  --background: #EEEEEE; /* 伝統的な和風の肌色を表現 */
   --foreground: #1a1a1a;
 }
 
@@ -12,11 +12,15 @@
   --font-mincho: var(--font-shippori-mincho);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+} */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -29,6 +33,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-mincho);
   line-height: 1.5;
   letter-spacing: 0.05em;
+  font-weight: 400;
 }
 
 /* 和風のセパレーター */

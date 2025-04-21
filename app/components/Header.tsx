@@ -2,33 +2,70 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isHeroVisible, setIsHeroVisible] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Heroセクションが表示されているかチェック
+      const heroSection = document.getElementById('hero-section');
+      if (heroSection) {
+        const rect = heroSection.getBoundingClientRect();
+        // Heroセクションが画面から完全に出たときにヘッダーを表示
+        setIsHeroVisible(rect.bottom > 0);
+      }
     };
+    
     window.addEventListener('scroll', handleScroll);
+    // 初期状態を設定
+    handleScroll();
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-paper/90 backdrop-blur-sm py-3' : 'bg-transparent py-5'}`}>
+    <header className={`fixed left-0 right-0 z-50 transition-all duration-500 
+      ${isScrolled ? 'bg-paper/90 backdrop-blur-sm py-3' : 'bg-transparent py-5'} 
+      ${isHeroVisible ? '-top-24 opacity-0' : 'top-0 opacity-100'}`}
+    >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="relative z-50">
-          <div className="flex flex-col items-center">
-            <h1 className="font-mincho text-xl md:text-2xl tracking-wider">
-              <span className="text-sm tracking-widest block text-center mb-1">割烹</span>
-              神谷
-            </h1>
+          <div className="flex flex-col items-center h-24 w-24">
+          {isMounted ? (
+              <video
+                poster="/images/kamiya-logo.webp"
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-contain"
+                suppressHydrationWarning
+              >
+                <source src="/images/kamiya-logo.webm" type="video/webm" />
+              </video>
+            ) : (
+              <Image
+                src="/images/kamiya-logo.webp"
+                alt="割烹 神谷 ロゴ"
+                width={128}
+                height={128}
+                className="w-full h-full object-contain"
+              />
+            )}
           </div>
         </Link>
 
         {/* モバイルメニューボタン */}
         <button
+          type="button"
           className="md:hidden relative z-50 w-8 h-8 flex flex-col justify-center items-center"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label={isMenuOpen ? 'メニューを閉じる' : 'メニューを開く'}
