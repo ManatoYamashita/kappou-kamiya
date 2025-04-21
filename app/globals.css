@@ -30,10 +30,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-mincho);
   line-height: 1.5;
   letter-spacing: 0.05em;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 /* 和風のセパレーター */

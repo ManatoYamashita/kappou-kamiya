@@ -127,7 +127,7 @@ export default function Hero() {
         {/* 背景画像 */}
         <div className="absolute inset-0">
           <Image
-            src="/images/kamiya-room.webp"
+            src="/images/kamiya-cover.webp"
             alt="割烹 神谷"
             fill
             className="object-cover p-2 rounded-2xl"

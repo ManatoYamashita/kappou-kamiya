@@ -9,28 +9,28 @@ const menuItems = [
     title: '季節の懐石 花コース',
     description: '四季折々の旬の食材を使用した本格懐石コース（全8品）',
     price: '8,800円',
-    image: '/images/ja-placeholder.webp',
+    image: '/images/kamiya-cource1.webp',
   },
   {
     id: 2,
     title: '季節の懐石 月コース',
     description: '伝統的な懐石料理の流れに沿った季節感あふれる献立（全8品）',
     price: '7,150円',
-    image: '/images/ja-placeholder.webp',
+    image: '/images/kamiya-cource2.webp',
   },
   {
     id: 3,
     title: '牛しゃぶしゃぶ・橘コース',
     description: '厳選した牛肉を使用した贅沢なしゃぶしゃぶコース',
     price: '7,700円',
-    image: '/images/ja-placeholder.webp',
+    image: '/images/kamiya-cource3.webp',
   },
   {
     id: 4,
     title: 'お祝い・法事用特別コース',
     description: '伊勢海老や赤飯など、特別な席に相応しい祝いの品々',
     price: '要相談',
-    image: '/images/ja-placeholder.webp',
+    image: '/images/kamiya-cource1.webp',
   },
 ];
 
