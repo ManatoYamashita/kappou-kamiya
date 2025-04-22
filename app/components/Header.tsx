@@ -20,8 +20,8 @@ export default function Header() {
       const heroSection = document.getElementById('hero-section');
       if (heroSection) {
         const rect = heroSection.getBoundingClientRect();
-        // Heroセクションが画面から完全に出たときにヘッダーを表示
-        setIsHeroVisible(rect.bottom > 0);
+        // Heroセクションが画面から出たときにヘッダーを表示
+        setIsHeroVisible(rect.bottom > 100);
       }
     };
     
@@ -70,32 +70,82 @@ export default function Header() {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label={isMenuOpen ? 'メニューを閉じる' : 'メニューを開く'}
         >
-          <span className={`block w-6 h-0.5 bg-ink transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-0.5' : '-translate-y-1'}`}></span>
-          <span className={`block w-6 h-0.5 bg-ink transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-          <span className={`block w-6 h-0.5 bg-ink transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-1'}`}></span>
+          <span 
+            className={`block w-6 h-0.5 bg-current shadow-[0_0_1px_1px_rgba(255,255,255,0.7)] transition-all duration-500 transform ${
+              isMenuOpen ? 'rotate-45 translate-y-0.5' : '-translate-y-1.5'
+            }`}
+          ></span>
+          <span 
+            className={`block w-6 h-0.5 bg-current shadow-[0_0_1px_1px_rgba(255,255,255,0.7)] transition-all duration-300 ${
+              isMenuOpen ? 'opacity-0 translate-x-3' : 'opacity-100'
+            }`}
+          ></span>
+          <span 
+            className={`block w-6 h-0.5 bg-current shadow-[0_0_1px_1px_rgba(255,255,255,0.7)] transition-all duration-500 transform ${
+              isMenuOpen ? '-rotate-45 -translate-y-0.5' : 'translate-y-1.5'
+            }`}
+          ></span>
         </button>
 
         {/* デスクトップナビゲーション */}
-        <nav className="hidden md:block">
-          <ul className="flex space-x-8 font-mincho tracking-wider text-sm">
-            <li><Link href="/#concept" className="hover:text-accent transition-colors duration-300">店舗理念</Link></li>
-            <li><Link href="/#menu" className="hover:text-accent transition-colors duration-300">お品書き</Link></li>
-            <li><Link href="/#info" className="hover:text-accent transition-colors duration-300">店舗情報</Link></li>
-            <li><Link href="/#access" className="hover:text-accent transition-colors duration-300">アクセス</Link></li>
-            <li><Link href="tel:050-5487-4317" className="hover:text-accent transition-colors duration-300">ご予約</Link></li>
+        <nav className={`hidden md:block transition-colors duration-300 ${
+          isScrolled ? 'text-ink' : 'text-paper'
+        }`}>
+          <ul className="flex space-x-10 font-mincho tracking-[0.15em] text-sm">
+            {[
+              { href: '/#concept', label: '店舗理念' },
+              { href: '/#menu', label: 'お品書き' },
+              { href: '/#info', label: '店舗情報' },
+              { href: '/#access', label: 'アクセス' },
+              { href: 'tel:050-5487-4317', label: 'ご予約' }
+            ].map((item, index) => (
+              <li key={index} className="relative group">
+                <Link 
+                  href={item.href} 
+                  className="py-2 block hover:text-accent transition-colors duration-300"
+                >
+                  {item.label}
+                </Link>
+                {/* ホバー時の下線装飾 */}
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-accent transition-all duration-300 group-hover:w-full"></span>
+              </li>
+            ))}
           </ul>
         </nav>
 
         {/* モバイルメニュー */}
-        <div className={`fixed inset-0 bg-paper z-40 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden`}>
-          <div className="h-full flex flex-col justify-center items-center">
+        <div className={`fixed inset-0 bg-paper z-40 transform transition-all duration-500 ease-in-out ${
+          isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-95'
+        } md:hidden`}>
+          {/* 和紙テクスチャの背景 */}
+          <div className="absolute inset-0 paper-texture"></div>
+          
+          {/* 装飾パターン */}
+          <div className="absolute top-0 right-0 w-32 h-32 japanese-pattern opacity-10"></div>
+          <div className="absolute bottom-0 left-0 w-32 h-32 japanese-pattern opacity-10"></div>
+          
+          <div className="h-screen flex flex-col justify-center items-center relative bg-white">
             <nav>
               <ul className="flex flex-col space-y-8 font-mincho text-lg text-center">
-                <li><Link href="/#concept" onClick={() => setIsMenuOpen(false)} className="block py-2">店舗理念</Link></li>
-                <li><Link href="/#menu" onClick={() => setIsMenuOpen(false)} className="block py-2">お品書き</Link></li>
-                <li><Link href="/#info" onClick={() => setIsMenuOpen(false)} className="block py-2">店舗情報</Link></li>
-                <li><Link href="/#access" onClick={() => setIsMenuOpen(false)} className="block py-2">アクセス</Link></li>
-                <li><Link href="tel:050-5487-4317" onClick={() => setIsMenuOpen(false)} className="block py-2">ご予約</Link></li>
+                {[
+                  { href: '/#concept', label: '店舗理念' },
+                  { href: '/#menu', label: 'お品書き' },
+                  { href: '/#info', label: '店舗情報' },
+                  { href: '/#access', label: 'アクセス' },
+                  { href: 'tel:050-5487-4317', label: 'ご予約' }
+                ].map((item, index) => (
+                  <li key={index} className="relative">
+                    <Link 
+                      href={item.href} 
+                      onClick={() => setIsMenuOpen(false)} 
+                      className="py-2 px-4 block transition-colors duration-300 hover:text-accent"
+                    >
+                      {item.label}
+                    </Link>
+                    {/* 装飾線 */}
+                    <div className="w-8 h-px bg-accent/30 mx-auto mt-2"></div>
+                  </li>
+                ))}
               </ul>
             </nav>
           </div>
@@ -103,4 +153,4 @@ export default function Header() {
       </div>
     </header>
   );
-} 
+}

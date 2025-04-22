@@ -27,6 +27,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   line-height: 1.7;
+  /* 和紙風の繊維感を表現するサブル背景 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23d1cdcd' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+  background-attachment: fixed;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,54 +40,89 @@ h1, h2, h3, h4, h5, h6 {
 
 /* 和風のセパレーター */
 .jp-separator {
-  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.jp-separator::before,
+.jp-separator::after {
+  content: '';
+  flex: 1;
   height: 1px;
-  width: 100%;
-  background-color: #8c7851;
-  opacity: 0.3;
+  background-color: var(--color-accent);
+  opacity: 0.35;
 }
 
 .jp-separator::before {
+  margin-right: 1rem;
+}
+
+.jp-separator::after {
+  margin-left: 1rem;
+}
+
+/* 家紋風マーク */
+.jp-symbol {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: relative;
+}
+
+.jp-symbol::before {
   content: '';
   position: absolute;
-  top: -4px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  background-color: #8c7851;
-  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 1px solid var(--color-accent);
 }
 
-/* 縦書きスタイル */
-.vertical-text {
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-  letter-spacing: 0.1em;
-}
-
-/* アニメーション */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { 
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to { 
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* 改良版スクロールアニメーション */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.slide-up {
-  animation: slideUp 1s ease-out forwards;
-  animation-delay: calc(var(--animation-order) * 0.1s);
+/* 改良版メニューカード */
+.menu-card {
+  background: var(--color-paper);
+  border: none;
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.05),
+    0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid var(--color-accent);
+  opacity: 0.2;
+  transition: opacity 0.4s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 12px 24px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.menu-card:hover::before {
+  opacity: 0.5;
 }
