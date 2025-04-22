@@ -1,5 +1,8 @@
 # 割烹 神谷 Website
 
+![ogp](https://github.com/user-attachments/assets/f6fd26f2-5e5b-4427-b2f1-670f2bcee032)
+
+
 [![Next.js](https://img.shields.io/badge/Next.js-15.3.1-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.0.0-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
 [![React](https://img.shields.io/badge/React-19.0.0-61DAFB?style=flat&logo=react)](https://reactjs.org/)
@@ -19,7 +22,7 @@
 
 ### 要件定義
 
-- 既存のサイトを参考にしつつ、デザインは一新する。
+- 既存のサイトを参考にしつつ、デザインは一新する。（ordered by Genshin SEZUKI）
 https://kappou-kamiya.gorp.jp/
 
 1. トップページ（home）
@@ -51,7 +54,7 @@ https://kappou-kamiya.gorp.jp/
 
 ```bash
 # リポジトリのクローン
-git clone https://github.com/yourusername/kappou-kamiya.git
+git clone https://github.com/ManatoYamashita/kappou-kamiya.git
 cd kappou-kamiya
 
 # 依存関係のインストール
