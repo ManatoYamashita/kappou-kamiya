@@ -47,7 +47,7 @@ export default function Concept() {
           
           <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
             {/* 左側の画像 - 大きく表示 */}
-            <div className="md:col-span-7 relative scale-110 top-[50px] left-[-50px] animate-on-scroll opacity-0" style={{ animationDelay: '0.2s' }}>
+            <div className="md:col-span-7 relative scale-110 top-[-50px] left-[-50px] animate-on-scroll opacity-0" style={{ animationDelay: '0.2s' }}>
               <div className="relative aspect-[4/3] overflow-hidden rounded-sm">
                 <Image
                   src="/images/kamiya-sake.webp"
