@@ -212,7 +212,7 @@ export default function Menu() {
             <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-4">
               {menuCategories.map((category) => (
                 <button
-                  type='button'
+                  type="button"
                   key={category}
                   onClick={() => setActiveCategory(category)}
                   className={`
@@ -221,7 +221,7 @@ export default function Menu() {
                       ? 'bg-zinc-800 text-white border-zinc-500 font-bold shadow-md' 
                       : 'border-black text-black-700 hover:bg-zinc-100 hover:border-zinc-400 hover:text-zinc-900'}
                   `}
-                  aria-pressed={activeCategory === category ? 'true' : 'false'}
+                  aria-pressed={activeCategory === category}
                   aria-label={category}
                 >
                   <span className='text-xs'>{category}</span>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import { Viewport } from 'next';
 
 // フォント設定
 const notoSans = Noto_Sans_JP({
@@ -23,8 +24,16 @@ const mincho = Shippori_Mincho({
 // 環境変数からサイトURLを取得
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kappou-kamiya.vercel.app';
 
+// viewportとthemeColorの設定を別のエクスポートとして定義
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#f7f4ed",
+};
+
+// 既存のmetadataからviewportとthemeColorを削除
 export const metadata: Metadata = {
-  title: "割烹 神谷 | 伝統と季節の味わい",
+  title: "割烹 神谷 | 川口の和食・しゃぶしゃぶ",
   description: "埼玉県川口市で四季の移ろいを感じる本格的な日本料理。旬の食材と熟練の技で織りなす割烹料理をご堪能ください。",
   keywords: "割烹, 神谷, 日本料理, 懐石, 川口, 旬, 和食, 個室, 接待, 法事",
   robots: "index, follow",
@@ -41,16 +50,11 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.jpg",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
-  themeColor: "#f7f4ed",
   openGraph: {
     type: "website",
     locale: "ja_JP",
     url: siteUrl,
-    title: "割烹 神谷 | 伝統と季節の味わい",
+    title: "割烹 神谷 | 川口の和食・しゃぶしゃぶ",
     description: "三代続く川口の老舗日本料理店。四季折々の食材と一期一会のおもてなしをご堪能ください。",
     siteName: "割烹 神谷",
     images: [
@@ -64,7 +68,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "割烹 神谷 | 伝統と季節の味わい",
+    title: "割烹 神谷 | 川口の和食・しゃぶしゃぶ",
     description: "埼玉県川口市で四季の移ろいを感じる本格的な日本料理。旬の食材と熟練の技で織りなす割烹料理をご堪能ください。",
     images: [`${siteUrl}/ogp.jpg`],
   },
@@ -183,7 +187,7 @@ export default function RootLayout({
         "@type": "Review",
         "author": {
           "@type": "Person",
-          "name": "田中様"
+          "name": "野村様"
         },
         "datePublished": "2023-09-15",
         "reviewBody": "季節の素材を活かした料理が絶品でした。特に焼き物と椀物が印象的でした。おもてなしも素晴らしく、特別な日に利用するのに最適なお店です。",
