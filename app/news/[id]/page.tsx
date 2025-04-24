@@ -9,14 +9,15 @@ export type Props = {
   createdAt: string;
   updatedAt: string;
   title: string;
+  description: string;
   content: string;
   publishedAt: string;
-  category: { name: string };
-  thumbnail?: { 
+  category?: { name: string };
+  thumbnail: { 
     url: string;
     width: number;
     height: number;
-    alt: string;
+    alt?: string;
   };
 };
 
@@ -46,7 +47,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
   // dayjsを使ってpublishedAtをYY.MM.DD形式に変換
   const formattedDate = dayjs(post.publishedAt).format('YYYY年MM月DD日');
 
-  return <ArticleContent post={post} formattedDate={formattedDate} />;
+  return (
+    <main className="mx-auto mt-36 px-6 md:px-16 bg-stone-50/80">
+      <ArticleContent post={post} formattedDate={formattedDate} />
+    </main>
+  );
 }
 
 // 静的パスを生成

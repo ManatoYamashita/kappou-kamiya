@@ -136,3 +136,36 @@ h1, h2, h3, h4, h5, h6 {
 .menu-card:hover::before {
   opacity: 0.5;
 }
+
+/* ページ遷移アニメーション関連のスタイル */
+html.is-changing {
+  overflow: hidden;
+}
+
+/* アニメーション中のbodyも固定 */
+html.is-changing body {
+  overflow: hidden;
+}
+
+/* GSAPアニメーションが適用されるまでの間、コンテンツを非表示にする */
+.page-content {
+  opacity: 0;
+}
+
+/* トランジション終了後に表示する */
+.page-content.is-loaded {
+  opacity: 1;
+}
+
+/* フラッシュ防止のためのスタイル */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f7f4ed; /* bg-paper と同じ色 */
+  z-index: -1;
+  pointer-events: none;
+}

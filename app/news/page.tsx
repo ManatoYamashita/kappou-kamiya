@@ -6,14 +6,16 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'お知らせ一覧 | 割烹 神谷',
-  description: '割烹 神谷からのお知らせ、イベント情報、営業日のご案内などをご覧いただけます。',
+  description: '割烹 神谷からのお知らせ、ブログ、コラムのご案内などをご覧いただけます。',
 };
 
 // ブログ記事の型定義
 type Post = {
   id: string;
   title: string;
+  description: string;
   publishedAt: string;
+  category?: { name: string };
   thumbnail?: {
     url: string;
     width: number;
@@ -27,7 +29,7 @@ async function getAllBlogPosts(): Promise<Post[]> {
     const data = await client.get({
       endpoint: 'news',
       queries: {
-        fields: 'id,title,publishedAt,thumbnail',
+        fields: 'id,title,publishedAt,thumbnail,description,category',
         limit: 100,  // 最大数を取得（必要に応じて調整）
       },
     });
@@ -42,16 +44,13 @@ export default async function NewsListPage() {
   const posts = await getAllBlogPosts();
 
   return (
-    <main className="max-w-5xl mx-auto px-6 md:px-16 py-20 bg-stone-50/80">
+    <main className="mx-auto mt-36 px-6 md:px-16 py-20 bg-stone-50/80">
       <div className="mb-20">
-        <p className="text-amber-800/60 text-sm mb-2">・ news</p>
+        <p className="text-amber-800/60 text-sm mb-2">news</p>
         <h1 className="text-4xl font-medium text-stone-800">お知らせ</h1>
       </div>
 
-      <div className="flex">
-        <div className="hidden md:block w-16 mr-12">
-          <h2 className="vertical-text text-stone-700/80 text-sm font-light">お知らせ一覧</h2>
-        </div>
+      <div className="flex md:px-24 px-4">
 
         <div className="flex-1">
           {posts.length > 0 ? (
@@ -88,20 +87,19 @@ export default async function NewsListPage() {
                         
                         <div className="flex flex-col">
                           <div>
-                            <time className="text-stone-500 text-sm block mb-4 md:hidden">{formattedDate}</time>
-                            <h2 className="text-xl font-normal text-stone-800 mb-4 group-hover:text-stone-600 transition-colors">{post.title}</h2>
-                            
-                            {index === 0 && (
-                              <p className="text-stone-600 mb-4 text-sm">3/5（水）は臨時休業とさせていただきます。ご了承ください。</p>
-                            )}
-                            
-                            {index === 1 && (
-                              <p className="text-stone-600 mb-4 text-sm">12/29〜1/5まで年末年始休業とさせていただきます。新年は1/6より営業いたします。</p>
-                            )}
-                            
-                            {index === 2 && (
-                              <p className="text-stone-600 mb-4 text-sm">11/4（月）は貸切営業とさせていただきます。ご了承ください。</p>
-                            )}
+                            <div className="flex flex-wrap items-center gap-4 mb-4">
+                              <time className="text-stone-500 text-sm block md:hidden">{formattedDate}</time>
+                              {post.category && (
+                                <span className="inline-flex items-center bg-amber-50/60 text-amber-800 px-3 py-1 text-xs font-medium border-l-2 border-amber-200/70 tracking-wider">
+                                  <svg className="mr-1.5 h-3 w-3 text-amber-700/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                                  </svg>
+                                  {post.category.name}
+                                </span>
+                              )}
+                            </div>
+                            <h2 className="text-xl font-bold text-stone-800 mb-4 group-hover:text-stone-600 transition-colors">{post.title}</h2>
+                            <p className="text-stone-600 mb-4 text-sm">{post.description}</p>
                           </div>
                           
                           <div className="text-sm text-amber-700/70 mt-auto pt-4">

@@ -4,6 +4,8 @@ import "./globals.css";
 import Script from "next/script";
 import { Viewport } from 'next';
 import Header from './components/Header';
+import PageTransition from './components/PageTransition';
+import PageContent from './components/PageContent';
 
 // フォント設定
 const notoSans = Noto_Sans_JP({
@@ -249,15 +251,30 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* スクロール問題修正のためのスクリプト */}
+        <Script id="fix-scroll" strategy="afterInteractive">
+          {`
+            // ページ読み込み完了時に確実にスクロール禁止を解除
+            window.addEventListener('load', function() {
+              document.documentElement.classList.remove('is-changing');
+            });
+
+            // スクロール禁止が長時間続く場合のフォールバック
+            setTimeout(function() {
+              document.documentElement.classList.remove('is-changing');
+            }, 3000);
+          `}
+        </Script>
       </head>
       <body
         className={`${notoSans.variable} ${mincho.variable} font-sans antialiased bg-paper text-ink`}
         suppressHydrationWarning
       >
+        <PageTransition />
         <Header />
-        <div className="mx-auto">
+        <PageContent>
           {children}
-        </div>
+        </PageContent>
       </body>
     </html>
   );

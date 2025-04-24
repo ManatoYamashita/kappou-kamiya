@@ -3,12 +3,15 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeroVisible, setIsHeroVisible] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
 
   useEffect(() => {
     setIsMounted(true);
@@ -16,12 +19,17 @@ export default function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      // Heroセクションが表示されているかチェック
-      const heroSection = document.getElementById('hero-section');
-      if (heroSection) {
-        const rect = heroSection.getBoundingClientRect();
-        // Heroセクションが画面から出たときにヘッダーを表示
-        setIsHeroVisible(rect.bottom > 100);
+      // Heroセクションのチェックはトップページの場合のみ行う
+      if (isHomePage) {
+        const heroSection = document.getElementById('hero-section');
+        if (heroSection) {
+          const rect = heroSection.getBoundingClientRect();
+          // Heroセクションが画面から出たときにヘッダーを表示
+          setIsHeroVisible(rect.bottom > 100);
+        }
+      } else {
+        // トップページ以外では常に非表示とする（= ヘッダーを表示する）
+        setIsHeroVisible(false);
       }
     };
     
@@ -30,12 +38,12 @@ export default function Header() {
     handleScroll();
     
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHomePage]);
 
   return (
     <header className={`fixed left-0 right-0 z-50 transition-all duration-500 
       ${isScrolled ? 'bg-paper/90 backdrop-blur-sm py-3' : 'bg-transparent py-5'} 
-      ${isHeroVisible ? '-top-24 opacity-0' : 'top-0 opacity-100'}`}
+      ${isHomePage && isHeroVisible ? '-top-24 opacity-0' : 'top-0 opacity-100'}`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="relative z-50">
