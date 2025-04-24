@@ -244,7 +244,7 @@ export default function RootLayout({
   return (
     <html lang="ja" className="scroll-smooth">
       <head>
-        <meta name="theme-color" content="#f7f4ed" />
+        {/* <meta name="theme-color" content="#f7f4ed" /> */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <Script
           id="json-ld"
@@ -258,6 +258,11 @@ export default function RootLayout({
             window.addEventListener('load', function() {
               document.documentElement.classList.remove('is-changing');
             });
+
+            // ルートパスの場合は即座にスクロール禁止を解除
+            if (window.location.pathname === '/') {
+              document.documentElement.classList.remove('is-changing');
+            }
 
             // スクロール禁止が長時間続く場合のフォールバック
             setTimeout(function() {

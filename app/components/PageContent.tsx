@@ -9,9 +9,24 @@ export default function PageContent({ children }: { children: React.ReactNode })
   const contentRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   
+  // ルートパスかどうかを確認
+  const isRootPath = pathname === '/';
+  
   // ページコンテンツのアニメーション
   useEffect(() => {
     if (!contentRef.current) return;
+    
+    // ルートパスの場合は即座に表示
+    if (isRootPath) {
+      gsap.set(contentRef.current, { 
+        opacity: 1,
+        scale: 1,
+        y: 0
+      });
+      setIsLoaded(true);
+      document.documentElement.classList.remove('is-changing');
+      return;
+    }
     
     // 初期状態
     gsap.set(contentRef.current, { 
@@ -46,12 +61,12 @@ export default function PageContent({ children }: { children: React.ReactNode })
     return () => {
       clearTimeout(enableScrollTimer);
     };
-  }, [pathname, isLoaded]);
+  }, [pathname, isLoaded, isRootPath]);
   
   return (
     <div 
       ref={contentRef} 
-      className={`min-h-screen page-content ${isLoaded ? 'is-loaded' : ''}`}
+      className={`min-h-screen page-content ${isLoaded || isRootPath ? 'is-loaded' : ''}`}
     >
       {children}
     </div>

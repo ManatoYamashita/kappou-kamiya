@@ -10,9 +10,17 @@ export default function PageTransition() {
   const overlayRef = useRef<HTMLDivElement>(null);
   const isAnimatingRef = useRef(false);
   
+  // パスがルート（"/"）かどうかを確認する関数
+  const isRootPath = (path: string) => path === '/';
+  
   // Router の変更をリッスンして、トランジションのタイミングを制御
   useEffect(() => {
-    const handleRouteChangeStart = () => {
+    const handleRouteChangeStart = (path?: string) => {
+      // ルートパスへの遷移の場合はアニメーションをスキップ
+      if (path && isRootPath(path)) {
+        return;
+      }
+      
       if (isAnimatingRef.current || !overlayRef.current) return;
       isAnimatingRef.current = true;
       
@@ -27,7 +35,14 @@ export default function PageTransition() {
       });
     };
     
-    const handleRouteChangeComplete = () => {
+    const handleRouteChangeComplete = (path?: string) => {
+      // ルートパスへの遷移の場合はアニメーションをスキップ
+      if (path && isRootPath(path)) {
+        isAnimatingRef.current = false;
+        document.documentElement.classList.remove('is-changing');
+        return;
+      }
+      
       if (!overlayRef.current) return;
       
       // わずかな遅延を入れて、新しいページの内容が読み込まれたことを確認
@@ -47,8 +62,18 @@ export default function PageTransition() {
     };
     
     // カスタムイベントをリッスン
-    window.addEventListener('routeChangeStart', handleRouteChangeStart);
-    window.addEventListener('routeChangeComplete', handleRouteChangeComplete);
+    const onRouteChangeStart = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      handleRouteChangeStart(customEvent.detail);
+    };
+    
+    const onRouteChangeComplete = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      handleRouteChangeComplete(customEvent.detail);
+    };
+    
+    window.addEventListener('routeChangeStart', onRouteChangeStart);
+    window.addEventListener('routeChangeComplete', onRouteChangeComplete);
     
     // ページロード時の初期アニメーション
     if (overlayRef.current) {
@@ -66,8 +91,8 @@ export default function PageTransition() {
     const safetyTimer = setTimeout(ensureScrollingEnabled, 5000);
     
     return () => {
-      window.removeEventListener('routeChangeStart', handleRouteChangeStart);
-      window.removeEventListener('routeChangeComplete', handleRouteChangeComplete);
+      window.removeEventListener('routeChangeStart', onRouteChangeStart);
+      window.removeEventListener('routeChangeComplete', onRouteChangeComplete);
       clearTimeout(safetyTimer);
       // コンポーネントがアンマウントされる時にも確実にスクロール禁止を解除
       document.documentElement.classList.remove('is-changing');
@@ -77,8 +102,8 @@ export default function PageTransition() {
   // パスの変更を検知してアニメーションをトリガー
   useEffect(() => {
     if (!isAnimatingRef.current) {
-      // パス変更完了イベントをディスパッチ
-      window.dispatchEvent(new Event('routeChangeComplete'));
+      // パス変更完了イベントをディスパッチ（現在のパスを渡す）
+      window.dispatchEvent(new CustomEvent('routeChangeComplete', { detail: pathname }));
     }
   }, [pathname]);
   
@@ -96,15 +121,26 @@ export default function PageTransition() {
         !anchor.hasAttribute('download') && 
         !(e.metaKey || e.ctrlKey)
       ) {
+        // アンカーからパスを取得
+        const path = new URL(anchor.href).pathname;
+        
+        // ルートパスへの遷移の場合は通常のナビゲーションを使用
+        if (isRootPath(path)) {
+          // データを渡してカスタムイベントをディスパッチ
+          window.dispatchEvent(new CustomEvent('routeChangeStart', { detail: path }));
+          router.push(path);
+          return;
+        }
+        
         // 外部リンクでないかつ 新しいタブで開くリンクでない場合
         e.preventDefault();
         
-        // トランジション開始イベントをディスパッチ
-        window.dispatchEvent(new Event('routeChangeStart'));
+        // トランジション開始イベントをディスパッチ（パスを渡す）
+        window.dispatchEvent(new CustomEvent('routeChangeStart', { detail: path }));
         
         // 遅延してからナビゲーション
         setTimeout(() => {
-          router.push(anchor.href);
+          router.push(path);
         }, 600); // アニメーションの時間と同期
       }
     };
