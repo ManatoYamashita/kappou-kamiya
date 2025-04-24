@@ -23,7 +23,8 @@
 ### 要件定義
 
 - 既存のサイトを参考にしつつ、デザインは一新する。（ordered by Genshin SEZUKI）
-https://kappou-kamiya.gorp.jp/
+
+[https://kappou-kamiya.gorp.jp/](https://kappou-kamiya.gorp.jp/)
 
 1. トップページ（home）
 2. 料理
@@ -78,7 +79,7 @@ npm run dev
 
 ## Projects
 
-```
+``` bash
 kappou-kamiya/
 ├── app/                # Nextアプリケーションコード
 │   ├── components/     # Reactコンポーネント

@@ -121,11 +121,11 @@ export default function Hero() {
         </motion.div>
 
         {/* メッセージ */}
-        <motion.div className="w-full px-8 text-center mt-8" variants={fadeIn}>
-          <p className="font-mincho text-xl mb-2 tracking-wider leading-relaxed">
+        <motion.div className="font-mincho font-bold w-full px-8 text-center mt-8" variants={fadeIn}>
+          <p className=".font-mincho text-xl mb-2 tracking-wider leading-relaxed">
             三代続く川口の老舗
           </p>
-          <p className="font-mincho text-xl tracking-wider leading-relaxed">
+          <p className="text-xl tracking-wider leading-relaxed">
             一期一会のおもてなし
           </p>
         </motion.div>
@@ -145,7 +145,7 @@ export default function Hero() {
 
         {/* ナビゲーション */}
         <motion.nav className="w-full text-center mt-8" variants={fadeIn}>
-          <ul className="flex justify-center space-x-8 font-mincho text-xs tracking-wide">
+          <ul className="flex justify-center space-x-8 font-mincho tracking-wide">
             <li><Link href="/#about" className="hover:text-accent transition-colors">お知らせ</Link></li>
             <li><Link href="/#menu" className="hover:text-accent transition-colors">お料理</Link></li>
             <li><Link href="/#info" className="hover:text-accent transition-colors">店舗情報</Link></li>
