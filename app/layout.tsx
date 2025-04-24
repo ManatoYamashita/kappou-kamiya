@@ -3,6 +3,7 @@ import { Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import { Viewport } from 'next';
+import Header from './components/Header';
 
 // フォント設定
 const notoSans = Noto_Sans_JP({
@@ -253,6 +254,7 @@ export default function RootLayout({
         className={`${notoSans.variable} ${mincho.variable} font-sans antialiased bg-paper text-ink`}
         suppressHydrationWarning
       >
+        <Header />
         <div className="mx-auto">
           {children}
         </div>

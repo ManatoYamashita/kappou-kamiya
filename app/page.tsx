@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Header from './components/Header';
 import Hero from './components/Hero';
 import Concept from './components/Concept';
 import Menu from './components/Menu';
@@ -14,7 +13,6 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <Header />
       <main>
         <Hero />
         <News />
