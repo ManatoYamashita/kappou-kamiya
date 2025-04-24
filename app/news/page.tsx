@@ -42,60 +42,94 @@ export default async function NewsListPage() {
   const posts = await getAllBlogPosts();
 
   return (
-    <main className="max-w-4xl mx-auto px-4 py-12">
-      <div className="mb-12 text-center">
-        <h1 className="text-3xl font-bold mb-2">お知らせ</h1>
-        <p className="text-stone-600">割烹 神谷からの最新情報</p>
+    <main className="max-w-5xl mx-auto px-6 md:px-16 py-20 bg-stone-50/80">
+      <div className="mb-20">
+        <p className="text-amber-800/60 text-sm mb-2">・ news</p>
+        <h1 className="text-4xl font-medium text-stone-800">お知らせ</h1>
       </div>
 
-      {posts.length > 0 ? (
-        <div className="grid gap-8">
-          {posts.map((post) => {
-            const formattedDate = dayjs(post.publishedAt).format('YY.MM.DD');
-            
-            return (
-              <Link 
-                href={`/news/${post.id}`}
-                key={post.id}
-                className="group flex flex-col md:flex-row gap-6 items-start bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
-              >
-                {post.thumbnail ? (
-                  <div className="w-full md:w-48 h-32 relative rounded-md overflow-hidden flex-shrink-0">
-                    <Image
-                      src={post.thumbnail.url}
-                      alt={post.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 768px) 100vw, 192px"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-full md:w-48 h-32 bg-stone-200 rounded-md flex-shrink-0 flex items-center justify-center">
-                    <span className="text-stone-400">No Image</span>
-                  </div>
-                )}
+      <div className="flex">
+        <div className="hidden md:block w-16 mr-12">
+          <h2 className="vertical-text text-stone-700/80 text-sm font-light">お知らせ一覧</h2>
+        </div>
+
+        <div className="flex-1">
+          {posts.length > 0 ? (
+            <div className="space-y-24">
+              {posts.map((post, index) => {
+                const formattedDate = dayjs(post.publishedAt).format('YYYY.MM.DD');
                 
-                <div className="flex-1">
-                  <time className="text-sm text-stone-500 block mb-2">{formattedDate}</time>
-                  <h2 className="text-xl font-medium mb-2 group-hover:text-stone-700 transition-colors duration-200">{post.title}</h2>
-                  <div className="flex">
-                    <span className="text-stone-600 group-hover:text-stone-800 transition-colors duration-200">
-                      詳細を見る →
-                    </span>
+                return (
+                  <div key={post.id} className="border-t border-stone-200 pt-12 relative">
+                    <div className="vertical-text absolute -left-10 top-12 text-xs font-light text-stone-400 hidden md:block">
+                      {formattedDate}
+                    </div>
+                    
+                    <Link 
+                      href={`/news/${post.id}`}
+                      className="group block"
+                    >
+                      <div className="grid md:grid-cols-[1fr,2fr] gap-12">
+                        {post.thumbnail ? (
+                          <div className="relative aspect-[3/2.5] w-full max-w-[280px] overflow-hidden">
+                            <Image
+                              src={post.thumbnail.url}
+                              alt={post.title}
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, 280px"
+                            />
+                          </div>
+                        ) : (
+                          <div className="aspect-[3/2.5] w-full max-w-[280px] bg-stone-200 flex items-center justify-center">
+                            <span className="text-stone-400">No Image</span>
+                          </div>
+                        )}
+                        
+                        <div className="flex flex-col">
+                          <div>
+                            <time className="text-stone-500 text-sm block mb-4 md:hidden">{formattedDate}</time>
+                            <h2 className="text-xl font-normal text-stone-800 mb-4 group-hover:text-stone-600 transition-colors">{post.title}</h2>
+                            
+                            {index === 0 && (
+                              <p className="text-stone-600 mb-4 text-sm">3/5（水）は臨時休業とさせていただきます。ご了承ください。</p>
+                            )}
+                            
+                            {index === 1 && (
+                              <p className="text-stone-600 mb-4 text-sm">12/29〜1/5まで年末年始休業とさせていただきます。新年は1/6より営業いたします。</p>
+                            )}
+                            
+                            {index === 2 && (
+                              <p className="text-stone-600 mb-4 text-sm">11/4（月）は貸切営業とさせていただきます。ご了承ください。</p>
+                            )}
+                          </div>
+                          
+                          <div className="text-sm text-amber-700/70 mt-auto pt-4">
+                            {index === 2 ? 'information' : ''}
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
                   </div>
-                </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="py-16 text-center">
+              <p className="text-stone-600 mb-6">現在お知らせはありません</p>
+              <Link href="/" className="text-stone-600 underline hover:text-stone-800">
+                トップページに戻る
               </Link>
-            );
-          })}
+            </div>
+          )}
+          
+          <div className="mt-32 pt-8 flex justify-center">
+            <div className="w-2 h-2 rounded-full bg-amber-800/80 mx-1"></div>
+            <div className="w-2 h-2 rounded-full bg-stone-300 mx-1"></div>
+            <div className="w-2 h-2 rounded-full bg-stone-300 mx-1"></div>
+          </div>
         </div>
-      ) : (
-        <div className="text-center py-12">
-          <p className="text-stone-600 mb-4">現在お知らせはありません</p>
-          <Link href="/" className="text-stone-600 underline hover:text-stone-800">
-            トップページに戻る
-          </Link>
-        </div>
-      )}
+      </div>
     </main>
   );
 } 

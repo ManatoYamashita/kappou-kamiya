@@ -38,6 +38,16 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
 }
 
+/* 垂直テキスト */
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  white-space: nowrap;
+  letter-spacing: 0.15em;
+  transform: rotate(180deg);
+  font-feature-settings: "palt";
+}
+
 /* 和風のセパレーター */
 .jp-separator {
   display: flex;
