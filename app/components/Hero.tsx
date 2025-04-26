@@ -116,6 +116,7 @@ export default function Hero() {
               width={128}
               height={128}
               className="w-full h-full object-contain"
+              loading='eager'
             />
           )}
         </motion.div>
@@ -139,6 +140,7 @@ export default function Hero() {
               fill
               className="object-cover"
               priority
+              loading='eager'
             />
           </div>
         </motion.div>
@@ -254,6 +256,7 @@ export default function Hero() {
                 fill
                 className="object-cover p-2 rounded-2xl"
                 priority
+                loading='eager'
               />
             </motion.div>
           </div>

@@ -138,7 +138,7 @@ export const allMenuItems: MenuItem[] = [
     title: '刺身盛合せ',
     description: '厳選した旬の新鮮な魚介を彩り豊かに盛り合わせました',
     price: '1,650円～',
-    image: '/images/menu-sashimi.webp',
+    image: '/images/p.webp',
     category: '逸品料理',
   },
   {
@@ -146,7 +146,7 @@ export const allMenuItems: MenuItem[] = [
     title: '本日の白身魚薄造り',
     description: 'その日一番の白身魚を薄造りで楽しむ逸品',
     price: '1,760円',
-    image: '/images/menu-shirasu.webp',
+    image: '/images/p.webp',
     category: '逸品料理',
   },
   {
@@ -154,7 +154,7 @@ export const allMenuItems: MenuItem[] = [
     title: '特選牛ヒレ肉変わり焼 梅風味ダレ',
     description: '厳選した牛ヒレ肉を香ばしく焼き上げ、特製の梅風味ダレで',
     price: '1,512円',
-    image: '/images/menu-beppu.webp',
+    image: '/images/p.webp',
     category: '逸品料理',
   },
   {
@@ -162,7 +162,7 @@ export const allMenuItems: MenuItem[] = [
     title: '鯛かぶと煮',
     description: '鯛のかぶとを丁寧に煮込み、旨味を閉じ込めた味わい深い一品',
     price: '1,100円',
-    image: '/images/menu-takabutai.webp',
+    image: '/images/p.webp',
     category: '逸品料理',
   },
   {
@@ -170,7 +170,7 @@ export const allMenuItems: MenuItem[] = [
     title: 'お茶漬彩々 まぐろ',
     description: '厳選したまぐろを使用した彩り豊かなお茶漬け',
     price: '要相談',
-    image: '/images/menu-bento-murasaki.webp',
+    image: '/images/p.webp',
     category: '逸品料理',
   },
   {
@@ -178,7 +178,7 @@ export const allMenuItems: MenuItem[] = [
     title: 'お茶漬彩々 たらこ・明太子・梅・のり',
     description: '様々な具材から選べる彩り豊かなお茶漬け',
     price: '要相談',
-    image: '/images/menu-bento-kaoru.webp',
+    image: '/images/p.webp',
     category: '逸品料理',
   },
   
