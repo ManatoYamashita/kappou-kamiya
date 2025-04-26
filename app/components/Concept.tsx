@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import Image from 'next/image';
-
+import Btn from './Btn';
 export default function Concept() {
   const sectionRef = useRef<HTMLElement>(null);
   
@@ -78,9 +78,7 @@ export default function Concept() {
                 </p>
                 
                 <div className="mt-8">
-                  <a href="#" className="inline-flex items-center text-sm border border-stone-300 px-6 py-2 rounded-full hover:bg-stone-100 transition-colors duration-300">
-                    read more <span className="ml-2">→</span>
-                  </a>
+                  <Btn text="詳しく読む" href="#" color="white" />
                 </div>
               </div>
             </div>

@@ -132,7 +132,7 @@ export default function ArticleContent({
   formattedDate: string;
 }) {
   return (
-    <main className="mx-auto px-6 sm:px-8 py-16 sm:py-20">
+    <main className="mx-auto px-0 sm:px-8 py-16 sm:py-20">
       <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
       
       {/* パンくずリスト */}
@@ -161,7 +161,7 @@ export default function ArticleContent({
       </nav>
 
       <article className="max-w-4xl mx-auto overflow-hidden" role="article" aria-labelledby="article-title">
-        <header className="px-8 pt-8 pb-6 border-b border-stone-100 relative">
+        <header className="px-0 md:px-8 pt-8 pb-6 border-b border-stone-100 relative">
           <div className="absolute top-0 right-0 w-24 h-24 bg-amber-50/30 opacity-20 rounded-bl-3xl"></div>
           <div className="flex flex-wrap items-center gap-4 mb-6 relative z-10">
             <time dateTime={post.publishedAt} className="inline-flex items-center text-stone-500 text-sm">
@@ -207,7 +207,7 @@ export default function ArticleContent({
           </div>
         )}
 
-        <div className="p-8 sm:p-10">
+        <div className="p-0 sm:p-10">
           <div id="content" className="prose prose-stone max-w-none mx-auto" tabIndex={-1}>
             <div 
               className="article-content"

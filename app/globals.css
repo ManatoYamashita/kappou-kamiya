@@ -35,7 +35,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.5;
   letter-spacing: 0.05em;
-  font-weight: 500;
+  font-family: var(--font-mincho);
+  /* font-weight: 500; */
 }
 
 /* 垂直テキスト */

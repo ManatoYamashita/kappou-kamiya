@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-
+import Btn from './Btn';
 export default function Hero() {
   const leftSideRef = useRef<HTMLDivElement>(null);
   const rightSideRef = useRef<HTMLDivElement>(null);
@@ -159,12 +159,7 @@ export default function Hero() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <a 
-            href="#reserve" 
-            className="inline-flex items-center justify-center bg-ink text-paper px-12 py-3 rounded-full font-mincho hover:bg-ink/80 transition-colors"
-          >
-            <span className="mr-2">•</span> ご予約 Reserve
-          </a>
+          <Btn text="ご予約 Reserve" href="#reserve" />
         </motion.div>
       </motion.div>
 
@@ -219,7 +214,7 @@ export default function Hero() {
             
             {/* ナビゲーションリンク - 中央揃え */}
             <motion.nav className="mb-16 text-center" variants={fadeIn}>
-              <ul className="flex space-x-8 font-mincho text-xs tracking-wide">
+              <ul className="flex space-x-8 font-mincho text-sm tracking-wide">
                 <li><Link href="/#about" className="hover:text-accent transition-colors">お知らせ</Link></li>
                 <li><Link href="/#menu" className="hover:text-accent transition-colors">お料理</Link></li>
                 <li><Link href="/#info" className="hover:text-accent transition-colors">店舗情報</Link></li>
@@ -233,12 +228,7 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <a 
-                href="#reserve" 
-                className="inline-flex items-center justify-center bg-ink text-paper px-12 py-3 rounded-full font-mincho hover:bg-ink/80 transition-colors"
-              >
-                <span className="mr-2">•</span> ご予約 Reserve
-              </a>
+              <Btn text="ご予約 Reserve" href="#reserve" />
             </motion.div>
           </motion.div>
         </motion.div>

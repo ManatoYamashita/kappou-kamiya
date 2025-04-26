@@ -3,107 +3,12 @@
 import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 
-// メニューデータを整理し、カテゴリーごとにグループ化
-// カテゴリー名の定義
-type MenuCategory = '懐石コース' | 'お祝い・法事コース' | '牛しゃぶ・ふぐ' | '逸品料理' | 'ランチ' | 'テイクアウト';
-
-// メニューアイテムの型定義
-interface MenuItem {
-  id: number;
-  title: string;
-  description: string;
-  price: string;
-  image: string;
-  category: MenuCategory;
-}
-
-// カテゴリー一覧
-const menuCategories: MenuCategory[] = [
-  '懐石コース',
-  'お祝い・法事コース',
-  '牛しゃぶ・ふぐ',
-  '逸品料理',
-  'ランチ',
-  'テイクアウト'
-];
-
-// メニューデータ
-const allMenuItems: MenuItem[] = [
-  {
-    id: 1,
-    title: '季節の懐石 花コース',
-    description: '四季折々の旬の食材を使用した本格懐石コース（全8品）',
-    price: '8,800円',
-    image: '/images/kamiya-cource1.webp',
-    category: '懐石コース',
-  },
-  {
-    id: 2,
-    title: '季節の懐石 月コース',
-    description: '伝統的な懐石料理の流れに沿った季節感あふれる献立（全8品）',
-    price: '7,150円',
-    image: '/images/kamiya-cource2.webp',
-    category: '懐石コース',
-  },
-  {
-    id: 3,
-    title: '牛しゃぶしゃぶ・橘コース',
-    description: '厳選した牛肉を使用した贅沢なしゃぶしゃぶコース',
-    price: '7,700円',
-    image: '/images/kamiya-cource3.webp',
-    category: '牛しゃぶ・ふぐ',
-  },
-  {
-    id: 4,
-    title: 'お祝い・法事用特別コース',
-    description: '伊勢海老や赤飯など、特別な席に相応しい祝いの品々',
-    price: '要相談',
-    image: '/images/kamiya-cource1.webp',
-    category: 'お祝い・法事コース',
-  },
-  // 他のカテゴリー用のダミーデータを追加
-  {
-    id: 5,
-    title: '旬の焼き魚',
-    description: '季節の魚を炭火で香ばしく焼き上げました',
-    price: '1,980円',
-    image: '/images/kamiya-cource2.webp',
-    category: '逸品料理',
-  },
-  {
-    id: 6,
-    title: '季節のランチ弁当',
-    description: '季節の食材を使用した彩り豊かな弁当',
-    price: '2,200円',
-    image: '/images/kamiya-cource3.webp',
-    category: 'ランチ',
-  },
-  {
-    id: 7,
-    title: 'テイクアウト懐石',
-    description: '自宅でもお楽しみいただける特製懐石料理',
-    price: '5,500円',
-    image: '/images/kamiya-cource1.webp',
-    category: 'テイクアウト',
-  },
-  // 横スクロールテスト用にダミーデータを追加
-  {
-    id: 8,
-    title: '季節の懐石 竹コース',
-    description: '四季折々の旬の食材を使用した特製懐石コース（全10品）',
-    price: '10,800円',
-    image: '/images/kamiya-cource3.webp',
-    category: '懐石コース',
-  },
-  {
-    id: 9,
-    title: '季節の懐石 梅コース',
-    description: '伝統的な懐石料理の流れに沿った季節感あふれる献立（全6品）',
-    price: '5,500円',
-    image: '/images/kamiya-cource2.webp',
-    category: '懐石コース',
-  },
-];
+// 外部ファイルからメニューデータをインポート
+import { 
+  allMenuItems, 
+  menuCategories, 
+  type MenuCategory 
+} from '@/app/data/menu';
 
 export default function Menu() {
   // スクロールアニメーション用のref
@@ -116,7 +21,32 @@ export default function Menu() {
   // 表示するメニューアイテムを抽出
   const filteredMenuItems = allMenuItems.filter(item => item.category === activeCategory);
   
-  // スクロールアニメーションの設定
+  // 画面幅に応じてボタンの表示方法を変更する状態 - 初期値をウィンドウオブジェクトの存在確認後に設定
+  const [useCompactButtons, setUseCompactButtons] = useState<boolean>(
+    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  );
+  
+  // 画面幅の監視
+  useEffect(() => {
+    // リサイズイベントのハンドラー
+    const handleResize = () => {
+      const isCompact = window.innerWidth < 768;
+      // 現在の値と同じなら更新しない（無限ループ防止）
+      if (useCompactButtons !== isCompact) {
+        setUseCompactButtons(isCompact);
+      }
+    };
+    
+    // リサイズイベントのリスナーを追加
+    window.addEventListener('resize', handleResize);
+    
+    // クリーンアップ
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [useCompactButtons]);
+  
+  // ページ表示時のアニメーション用
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -138,21 +68,8 @@ export default function Menu() {
     };
   }, []);
   
-  // カテゴリー変更時に再アニメーションするための処理
+  // カテゴリー変更時の処理 - アニメーションを削除
   useEffect(() => {
-    // アニメーション用の要素を取得して再アニメーション
-    const menuCards = sectionRef.current?.querySelectorAll('.menu-item-card');
-    menuCards?.forEach((card, index) => {
-      // 一度リセットしてから新しいアニメーションをトリガー
-      card.classList.remove('fade-in');
-      card.classList.add('opacity-0');
-      
-      // 少し遅延をつけて順番にフェードイン
-      setTimeout(() => {
-        card.classList.add('fade-in');
-      }, 100 + index * 100);
-    });
-
     // カテゴリー変更時にスクロール位置をリセット
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollLeft = 0;
@@ -170,29 +87,26 @@ export default function Menu() {
           <span className="inline-block border-b border-accent pb-2">お品書き</span>
         </h2>
         
-        {/* メインコンテンツ - フレックスで縦に伸縮させる */}
+        {/* メインコンテンツ */}
         <div className="max-w-6xl mx-auto w-full flex flex-col flex-grow overflow-hidden">
-          {/* メニューカード表示エリア - 横スクロール対応 */}
+          {/* メニューカード表示エリア - スクロール可能 */}
           <div 
             ref={scrollContainerRef}
-            className="flex-grow overflow-x-auto pb-4 mb-4 hide-scrollbar flex items-center"
+            className="flex-grow overflow-x-auto pb-4 mb-4 flex items-center relative"
           >
             <div className="flex space-x-4 px-2 min-w-max">
-              {filteredMenuItems.map((item, index) => (
+              {filteredMenuItems.map((item) => (
                 <div 
                   key={item.id} 
-                  className="menu-item-card animate-on-scroll opacity-0 bg-paper border border-accent/20 rounded-sm overflow-hidden transition-all duration-500 hover:shadow-md flex-shrink-0"
-                  style={{ 
-                    animationDelay: `${0.2 + index * 0.1}s`,
-                    width: '240px'  // カードの幅を固定
-                  }}
+                  className="bg-paper border border-accent/20 rounded-sm overflow-hidden hover:shadow-md flex-shrink-0"
+                  style={{ width: '240px' }}
                 >
                   <div className="relative aspect-[3/2] overflow-hidden">
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
-                      className="object-cover transition-transform duration-700 hover:scale-105"
+                      className="object-cover transition-transform duration-500 hover:scale-105"
                       sizes="240px"
                     />
                   </div>
@@ -204,19 +118,31 @@ export default function Menu() {
                 </div>
               ))}
             </div>
+            
+            {/* スクロールヒント */}
+            {filteredMenuItems.length > 3 && (
+              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/70 p-1 rounded-full shadow-md text-black/70 pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            )}
           </div>
           
-          {/* カテゴリータブ - 下部に固定 */}
+          {/* カテゴリータブ */}
           <div className="animate-on-scroll opacity-0 mt-auto">
-            
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-4">
+            <div className={`
+              grid gap-2 mb-4
+              ${useCompactButtons ? 'grid-cols-3' : 'grid-cols-2 md:grid-cols-6'}
+            `}>
               {menuCategories.map((category) => (
                 <button
                   type="button"
                   key={category}
                   onClick={() => setActiveCategory(category)}
                   className={`
-                    border transition-all duration-300 py-2 px-1 text-center font-mincho text-sm cursor-pointer
+                    border transition-all duration-300 py-2 px-1 text-center font-mincho cursor-pointer
+                    whitespace-nowrap text-xs md:text-sm overflow-hidden text-ellipsis
                     ${activeCategory === category 
                       ? 'bg-zinc-800 text-white border-zinc-500 font-bold shadow-md' 
                       : 'border-black text-black-700 hover:bg-zinc-100 hover:border-zinc-400 hover:text-zinc-900'}
@@ -224,19 +150,38 @@ export default function Menu() {
                   aria-pressed={activeCategory === category}
                   aria-label={category}
                 >
-                  <span className='text-xs'>{category}</span>
+                  {category}
                 </button>
               ))}
             </div>
           </div>
           
-          {/* 注釈 - さらに縮小 */}
+          {/* 注釈 */}
           <div className="text-center animate-on-scroll opacity-0 text-xs md:text-sm text-ink/60">
             <p>※ 仕入れ状況により変更あり・料金は税込・サービス料10%別</p>
             <p className="font-mincho">ご予約: 050-5487-4317</p>
           </div>
         </div>
       </div>
+      
+      {/* ページロード時のアニメーション用のCSS */}
+      <style jsx global>{`
+        /* フェードインアニメーション（ページロード時のみ） */
+        .fade-in {
+          animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 }

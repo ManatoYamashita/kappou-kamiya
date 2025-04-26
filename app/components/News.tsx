@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import dayjs from 'dayjs';
 import { client } from '../../libs/microcms';
+import Btn from './Btn';
 
 // ブログ記事の型定義
 type Props = {
@@ -81,10 +82,8 @@ export default async function News() {
           </div>
         )}
         
-        <div className='text-center mt-8'>
-          <Link href='/news' className='inline-block border border-stone-300 px-6 py-2 rounded-md text-stone-700 hover:bg-stone-100 transition-colors duration-200'>
-            すべてのお知らせを見る
-          </Link>
+        <div className='my-10 flex justify-end'>
+          <Btn text="すべてのお知らせを見る" href="/news" />
         </div>
       </div>
     </section>
