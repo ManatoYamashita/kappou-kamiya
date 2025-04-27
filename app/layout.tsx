@@ -242,14 +242,34 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="ja" className="scroll-smooth">
+    <html lang="ja" className={`scroll-smooth ${notoSans.variable} ${mincho.variable}`}>
       <head>
         {/* <meta name="theme-color" content="#f7f4ed" /> */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <Script
           id="json-ld"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd),
+          }}
+        />
+        {/* Google Analyticsタグを遅延読み込みに変更 */}
+        <Script
+          id="gtag-manager"
+          strategy="lazyOnload"
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+        />
+        <Script
+          id="gtag-config"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX');
+            `,
+          }}
         />
         {/* スクロール問題修正のためのスクリプト */}
         <Script id="fix-scroll" strategy="afterInteractive">
@@ -275,8 +295,8 @@ export default function RootLayout({
         className={`${notoSans.variable} ${mincho.variable} font-sans antialiased bg-paper text-ink`}
         suppressHydrationWarning
       >
-        <PageTransition />
         <Header />
+        <PageTransition />
         <PageContent>
           {children}
         </PageContent>

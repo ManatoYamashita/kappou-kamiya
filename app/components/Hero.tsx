@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import Btn from './Btn';
 
 export default function Hero() {
@@ -21,59 +20,19 @@ export default function Hero() {
     }
   }, []);
 
-  // アニメーション設定 - 共通で使用するバリアント
-  const animations = {
-    fadeIn: {
-      hidden: { opacity: 0, y: 20 },
-      visible: { 
-        opacity: 1, 
-        y: 0,
-        transition: { duration: 0.8 }
-      }
-    },
-    staggerContainer: {
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
-        transition: {
-          staggerChildren: 0.2,
-          delayChildren: 0.3
-        }
-      }
-    },
-    imageReveal: {
-      hidden: { opacity: 0, scale: 1.05 },
-      visible: { 
-        opacity: 1, 
-        scale: 1,
-        transition: { duration: 1.2, ease: "easeOut" }
-      }
-    }
-  };
-
   return (
     <section id="hero-section" className="flex flex-col md:flex-row min-h-screen bg-paper">
       {/* コンテンツコンテナ - モバイルとデスクトップで共通の要素を含む */}
-      <motion.div 
-        className="w-full flex flex-col items-center md:w-1/2 md:px-20 md:py-12 md:justify-center"
-        initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <motion.div 
-          className="flex flex-col items-center w-full"
-          initial="hidden"
-          animate="visible"
-          variants={animations.staggerContainer}
-        >
+      <div className="w-full flex flex-col items-center md:w-1/2 md:px-20 md:py-12 md:justify-center">
+        <div className="flex flex-col items-center w-full">
           {/* ロゴ */}
-          <motion.div className="w-32 h-32 relative mt-16 md:mt-0 md:mb-16" variants={animations.fadeIn}>
+          <div className="w-32 h-32 relative mt-16 md:mt-0 md:mb-16">
             {isMounted ? (
               <video
                 ref={videoRef}
                 poster="/images/kamiya-logo.webp"
                 muted
-                loop
+                autoPlay
                 playsInline
                 className="w-full h-full object-contain"
                 suppressHydrationWarning
@@ -90,20 +49,20 @@ export default function Hero() {
                 loading='eager'
               />
             )}
-          </motion.div>
+          </div>
 
           {/* メッセージ */}
-          <motion.div className="font-mincho font-bold w-full px-8 text-center mt-8 md:mb-16 md:px-0" variants={animations.fadeIn}>
+          <div className="font-mincho font-bold w-full px-8 text-center mt-8 md:mb-16 md:px-0">
             <p className="text-xl md:text-2xl mb-2 tracking-wider leading-relaxed">
               三代続く川口の老舗
             </p>
             <p className="text-xl md:text-2xl tracking-wider leading-relaxed md:mb-12">
               一期一会のおもてなし
             </p>
-          </motion.div>
+          </div>
           
           {/* モバイル専用の画像 */}
-          <motion.div className="w-full px-4 mt-8 h-48 md:hidden" variants={animations.imageReveal}>
+          <div className="w-full px-4 mt-8 h-48 md:hidden">
             <div className="relative w-full h-full rounded-2xl overflow-hidden">
               <Image
                 src="/images/kamiya-cover.webp"
@@ -115,43 +74,28 @@ export default function Hero() {
                 loading='eager'
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* ナビゲーション */}
-          <motion.nav className="w-full text-center mt-8 md:mb-16" variants={animations.fadeIn}>
+          <nav className="w-full text-center mt-8 md:mb-16">
             <ul className="flex justify-center space-x-8 font-mincho tracking-wide md:text-sm">
               <li><Link href="/news" className="hover:text-accent transition-colors">お知らせ</Link></li>
               <li><Link href="#menu" scroll={true} className="hover:text-accent transition-colors">お料理</Link></li>
               <li><Link href="#info" scroll={true} className="hover:text-accent transition-colors">店舗情報</Link></li>
             </ul>
-          </motion.nav>
+          </nav>
 
           {/* 予約ボタン */}
-          <motion.div 
-            className="mt-8 mb-16" 
-            variants={animations.fadeIn}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <div className="mt-8 mb-16">
             <Btn text="ご予約 Reserve" href="#reserve" />
-          </motion.div>
-        </motion.div>
-      </motion.div>
+          </div>
+        </div>
+      </div>
 
       {/* デスクトップ専用の右側セクション（画像） */}
-      <motion.div 
-        className="hidden md:block w-1/2 relative h-screen"
-        initial={{ opacity: 0, x: 30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-      >
+      <div className="hidden md:block w-1/2 relative h-screen">
         {/* 背景画像 */}
-        <motion.div
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="absolute inset-0"
-        >
+        <div className="absolute inset-0">
           <Image
             src="/images/kamiya-cover.webp"
             alt="割烹 神谷"
@@ -160,9 +104,11 @@ export default function Hero() {
             className="object-cover p-2 rounded-2xl"
             priority
             loading='eager'
+            fetchPriority="high"
+            decoding="async"
           />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

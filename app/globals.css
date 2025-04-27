@@ -170,3 +170,122 @@ body::after {
   z-index: -1;
   pointer-events: none;
 }
+
+/* Hero セクションのアニメーション定義 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Heroセクションの要素にアニメーションを適用 */
+#hero-section {
+  animation: fadeIn 1.2s ease-out 0.2s both;
+}
+
+#hero-section .w-32 {
+  animation: scaleIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s both;
+}
+
+#hero-section .font-mincho {
+  animation: slideUp 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s both;
+}
+
+#hero-section .w-full.px-4 {
+  animation: slideUp 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
+}
+
+#hero-section nav {
+  animation: fadeIn 1.2s ease-out 1.2s both;
+}
+
+#hero-section nav ul li {
+  opacity: 0;
+  animation: slideUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+#hero-section nav ul li:nth-child(1) {
+  animation-delay: 1.4s;
+}
+
+#hero-section nav ul li:nth-child(2) {
+  animation-delay: 1.6s;
+}
+
+#hero-section nav ul li:nth-child(3) {
+  animation-delay: 1.8s;
+}
+
+#hero-section .mt-8.mb-16 {
+  animation: fadeIn 1s ease-out 2s both;
+}
+
+/* デスクトップレイアウトの右側画像用アニメーション */
+@media (min-width: 768px) {
+  #hero-section .hidden.md\:block {
+    animation: fadeIn 2s cubic-bezier(0.215, 0.61, 0.355, 1) 0.4s both;
+  }
+  
+  #hero-section .hidden.md\:block .absolute {
+    animation: scaleIn 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s both;
+  }
+}
+
+/* 和風テイストのスムーズな動きを表現するための補助クラス */
+.fade-in-wabi {
+  opacity: 0;
+  animation: fadeIn 1.6s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+.slide-up-wabi {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUp 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}

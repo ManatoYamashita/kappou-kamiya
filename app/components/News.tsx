@@ -135,6 +135,9 @@ export default async function News() {
                         fill
                         className='object-cover group-hover:scale-105 transition-transform duration-300'
                         sizes="(max-width: 768px) 100vw, 128px"
+                        loading="lazy"
+                        decoding="async"
+                        quality={75}
                       />
                     </div>
                   ) : (

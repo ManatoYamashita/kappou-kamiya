@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { type Props } from './page';
 import dayjs from 'dayjs';
+import { useEffect, useRef } from 'react';
 
 // 型を拡張してthumbnailCaptionを含める（オプショナル）
 type ArticleProps = Props & {
@@ -79,12 +80,10 @@ const contentStyles = `
   }
   
   /* 画像関連のスタイル強化 */
-  .article-content img {
+  .article-content .image-wrapper {
     max-width: 100%;
-    height: auto;
-    border-radius: 4px;
     margin: 2rem auto;
-    display: block;
+    position: relative;
   }
   
   .article-content figure {
@@ -131,6 +130,50 @@ export default function ArticleContent({
   post: ArticleProps;
   formattedDate: string;
 }) {
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // microCMSのリッチエディタから挿入された画像を処理
+  useEffect(() => {
+    if (contentRef.current) {
+      // コンテンツ内の画像を探す
+      const images = contentRef.current.querySelectorAll('img');
+      
+      images.forEach((img) => {
+        // 親要素を取得
+        const parent = img.parentNode;
+        
+        // 画像ソース、代替テキスト、サイズを取得
+        const src = img.getAttribute('src') || '';
+        const alt = img.getAttribute('alt') || '';
+        
+        // width/heightが両方指定されていても、fillを使わないようにする
+        if (src && parent) {
+          // 既存の画像を削除
+          img.remove();
+          
+          // 新しいdiv要素を作成して画像をラップ
+          const wrapper = document.createElement('div');
+          wrapper.className = 'image-wrapper aspect-video relative';
+          wrapper.style.width = '100%';
+          
+          // 元の親要素に挿入
+          parent.appendChild(wrapper);
+          
+          // Next.js Imageコンポーネントの代わりにimg要素を使用
+          const newImg = document.createElement('img');
+          newImg.src = src;
+          newImg.alt = alt;
+          newImg.className = 'w-full h-auto';
+          newImg.setAttribute('loading', 'lazy');
+          newImg.setAttribute('decoding', 'async');
+          
+          // 新しいラッパーに画像を追加
+          wrapper.appendChild(newImg);
+        }
+      });
+    }
+  }, [post.content]);
+
   return (
     <main className="mx-auto px-0 sm:px-8 py-16 sm:py-20">
       <style dangerouslySetInnerHTML={{ __html: contentStyles }} />
@@ -192,7 +235,7 @@ export default function ArticleContent({
             <div className="max-h-[500px] overflow-hidden">
               <Image
                 src={post.thumbnail.url}
-                alt=""
+                alt={post.thumbnail.alt || ""}
                 width={1200}
                 height={675}
                 className="w-full object-cover"
@@ -211,6 +254,7 @@ export default function ArticleContent({
           <div id="content" className="prose prose-stone max-w-none mx-auto" tabIndex={-1}>
             <div 
               className="article-content"
+              ref={contentRef}
               dangerouslySetInnerHTML={{ __html: typeof post.content === 'string' ? post.content : '' }} 
             />
           </div>
