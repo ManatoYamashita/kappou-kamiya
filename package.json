@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "critters": "^0.0.23",
     "dayjs": "^1.11.13",
     "framer-motion": "^12.8.0",
     "gsap": "^3.12.7",
