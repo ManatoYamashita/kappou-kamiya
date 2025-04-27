@@ -85,7 +85,7 @@ export default function Concept() {
           </div>
 
           <div className="mt-24">
-            <h3 className="font-mincho text-2xl md:text-3xl text-center mb-16 animate-on-scroll opacity-0" style={{ animationDelay: '0.6s' }}>
+            <h3 className="font-mincho font-bold text-2xl md:text-3xl text-center mb-16 animate-on-scroll opacity-0" style={{ animationDelay: '0.6s' }}>
               <span className="inline-block border-b border-accent pb-2">こだわり</span>
             </h3>
             

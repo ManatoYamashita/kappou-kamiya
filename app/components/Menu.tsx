@@ -143,10 +143,10 @@ export default function Menu() {
     <section 
       ref={sectionRef} 
       id="menu" 
-      className="h-screen py-6 md:py-8 bg-paper text-ink flex flex-col overflow-hidden"
+      className="min-h-screen py-6 md:py-8 bg-paper text-ink flex flex-col justify-evenly"
     >
       <div className="container mx-auto px-4 flex flex-col h-full">
-        <h2 className="font-mincho text-2xl md:text-3xl text-center mb-4 animate-on-scroll opacity-0">
+        <h2 className="font-mincho text-3xl md:text-4xl text-center mb-4 animate-on-scroll opacity-0 py-6">
           <span className="inline-block border-b border-accent pb-2">お品書き</span>
         </h2>
         

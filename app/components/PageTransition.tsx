@@ -123,6 +123,12 @@ export default function PageTransition() {
       ) {
         // アンカーからパスを取得
         const path = new URL(anchor.href).pathname;
+        const hash = new URL(anchor.href).hash;
+        
+        // 同じパスでハッシュリンクの場合は通常の動作を許可（同一ページ内スクロール）
+        if (path === pathname && hash) {
+          return;
+        }
         
         // ルートパスへの遷移の場合は通常のナビゲーションを使用
         if (isRootPath(path)) {
@@ -140,7 +146,7 @@ export default function PageTransition() {
         
         // 遅延してからナビゲーション
         setTimeout(() => {
-          router.push(path);
+          router.push(path + hash);
         }, 600); // アニメーションの時間と同期
       }
     };
@@ -150,7 +156,7 @@ export default function PageTransition() {
     return () => {
       document.removeEventListener('click', handleLinkClick);
     };
-  }, [router]);
+  }, [router, pathname]);
   
   return (
     <div

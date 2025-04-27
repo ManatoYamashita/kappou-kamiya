@@ -109,7 +109,8 @@ export default function Hero() {
                 src="/images/kamiya-cover.webp"
                 alt="割烹 神谷"
                 fill
-                className="object-cover"
+                sizes="100vw"
+                className="object-cover object-top"
                 priority
                 loading='eager'
               />
@@ -119,9 +120,9 @@ export default function Hero() {
           {/* ナビゲーション */}
           <motion.nav className="w-full text-center mt-8 md:mb-16" variants={animations.fadeIn}>
             <ul className="flex justify-center space-x-8 font-mincho tracking-wide md:text-sm">
-              <li><Link href="/#about" className="hover:text-accent transition-colors">お知らせ</Link></li>
-              <li><Link href="/#menu" className="hover:text-accent transition-colors">お料理</Link></li>
-              <li><Link href="/#info" className="hover:text-accent transition-colors">店舗情報</Link></li>
+              <li><Link href="/news" className="hover:text-accent transition-colors">お知らせ</Link></li>
+              <li><Link href="#menu" scroll={true} className="hover:text-accent transition-colors">お料理</Link></li>
+              <li><Link href="#info" scroll={true} className="hover:text-accent transition-colors">店舗情報</Link></li>
             </ul>
           </motion.nav>
 
@@ -155,20 +156,11 @@ export default function Hero() {
             src="/images/kamiya-cover.webp"
             alt="割烹 神谷"
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover p-2 rounded-2xl"
             priority
             loading='eager'
           />
-        </motion.div>
-
-        {/* 灯篭アイコン */}
-        <motion.div 
-          className="absolute bottom-16 right-16 w-16 h-16 flex items-center justify-center bg-paper/20 rounded-full backdrop-blur-sm"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-        >
-          <span className="text-paper text-2xl">灯</span>
         </motion.div>
       </motion.div>
     </section>
