@@ -31,7 +31,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kappou-kamiya.verce
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f7f4ed",
+  themeColor: "#eee",
 };
 
 // 既存のmetadataからviewportとthemeColorを削除

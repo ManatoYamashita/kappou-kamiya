@@ -1,14 +1,46 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [isMounted, setIsMounted] = useState(false);
+  
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   
   return (
     <footer className="bg-ink text-paper py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="font-mincho text-xl mb-4">割烹 神谷</h3>
+            <div className="mb-4">
+              <div className="w-24 h-24 relative">
+                {isMounted ? (
+                  <video
+                    poster="/images/kamiya-logo.webp"
+                    muted
+                    playsInline
+                    autoPlay
+                    className="w-full h-full object-contain"
+                    suppressHydrationWarning
+                  >
+                    <source src="/images/kamiya-logo.webm" type="video/webm" />
+                  </video>
+                ) : (
+                  <Image
+                    src="/images/kamiya-logo.webp"
+                    alt="割烹 神谷 ロゴ"
+                    width={96}
+                    height={96}
+                    className="w-full h-full object-contain"
+                  />
+                )}
+              </div>
+            </div>
             <address className="not-italic leading-relaxed text-paper/80">
               〒332-0017<br />
               埼玉県川口市栄町2-1-26<br />
@@ -41,9 +73,9 @@ export default function Footer() {
               <li>
                 <Link href="/#access" className="hover:text-accent transition-colors">アクセス</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="tel:050-5487-4317" className="hover:text-accent transition-colors">ご予約</Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
