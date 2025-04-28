@@ -257,7 +257,7 @@ export default function RootLayout({
         <Script
           id="gtag-manager"
           strategy="lazyOnload"
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          src="https://www.googletagmanager.com/gtag/js?id=G-KQMT9X4Q9Z"
         />
         <Script
           id="gtag-config"
