@@ -79,15 +79,15 @@ export default function Hero() {
           {/* ナビゲーション */}
           <nav className="w-full text-center mt-8 md:mb-16">
             <ul className="flex justify-center space-x-8 font-mincho tracking-wide md:text-sm">
-              <li><Link href="/news" className="hover:text-accent transition-colors">お知らせ</Link></li>
-              <li><Link href="#menu" scroll={true} className="hover:text-accent transition-colors">お料理</Link></li>
-              <li><Link href="#info" scroll={true} className="hover:text-accent transition-colors">店舗情報</Link></li>
+              <li><Link href="/news" className="hover:text-accent transition-colors" aria-label="お知らせへ移動">お知らせ</Link></li>
+              <li><Link href="#menu" scroll={true} className="hover:text-accent transition-colors" aria-label="お料理へ移動">お料理</Link></li>
+              <li><Link href="#info" scroll={true} className="hover:text-accent transition-colors" aria-label="店舗情報へ移動">店舗情報</Link></li>
             </ul>
           </nav>
 
           {/* 予約ボタン */}
           <div className="mt-8 mb-16">
-            <Btn text="ご予約 Reserve" href="#reserve" />
+            <Btn text="ご予約 Reserve" href="#reserve" aria-label="ご予約 Reserve" />
           </div>
         </div>
       </div>

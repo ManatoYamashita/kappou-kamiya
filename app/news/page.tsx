@@ -67,6 +67,7 @@ export default async function NewsListPage() {
                     <Link 
                       href={`/news/${post.id}`}
                       className="group block"
+                      aria-label={`${post.title}の記事へ移動`}
                     >
                       <div className="grid md:grid-cols-[1fr,2fr] gap-12">
                         {post.thumbnail ? (
@@ -115,7 +116,7 @@ export default async function NewsListPage() {
           ) : (
             <div className="py-16 text-center">
               <p className="text-stone-600 mb-6">現在お知らせはありません</p>
-              <Link href="/" className="text-stone-600 underline hover:text-stone-800">
+              <Link href="/" className="text-stone-600 underline hover:text-stone-800" aria-label="トップページに戻る">
                 トップページに戻る
               </Link>
             </div>

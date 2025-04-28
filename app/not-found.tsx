@@ -10,6 +10,7 @@ export default function NotFound() {
       <Link
         href="/"
         className="px-6 py-3 bg-accent text-white rounded transition hover:bg-accent/80"
+        aria-label="トップページに戻る"
       >
         トップページに戻る
       </Link>

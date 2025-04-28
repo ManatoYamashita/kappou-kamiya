@@ -182,7 +182,7 @@ export default function ArticleContent({
       <nav className="mb-12" aria-label="パンくずリスト">
         <ol className="flex flex-wrap items-center text-sm text-stone-600">
           <li className="flex items-center">
-            <Link href="/" className="text-amber-800/70 hover:text-amber-700 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-colors">
+            <Link href="/" className="text-amber-800/70 hover:text-amber-700 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-colors" aria-label="ホームへ移動">
               ホーム
             </Link>
             <svg className="mx-2 h-4 w-4 text-stone-400" fill="currentColor" viewBox="0 0 20 20">
@@ -190,7 +190,7 @@ export default function ArticleContent({
             </svg>
           </li>
           <li className="flex items-center">
-            <Link href="/news" className="text-amber-800/70 hover:text-amber-700 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-colors">
+            <Link href="/news" className="text-amber-800/70 hover:text-amber-700 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-colors" aria-label="お知らせへ移動" >
               お知らせ
             </Link>
             <svg className="mx-2 h-4 w-4 text-stone-400" fill="currentColor" viewBox="0 0 20 20">
@@ -273,6 +273,7 @@ export default function ArticleContent({
           <Link 
             href="/news" 
             className="inline-flex items-center text-amber-800/80 hover:text-amber-700 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-colors"
+            aria-label="お知らせ一覧に戻る"
           >
             <svg className="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />

@@ -126,6 +126,7 @@ export default async function News() {
                   href={`/news/${post.id}`}
                   key={post.id}
                   className='group flex flex-col md:flex-row gap-4 items-start bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200'
+                  aria-label={`${post.title}の記事へ移動`}
                 >
                   {post.thumbnail ? (
                     <div className='w-full md:w-32 h-24 relative rounded-md overflow-hidden flex-shrink-0'>
@@ -169,7 +170,7 @@ export default async function News() {
         )}
 
         <div className='my-10 flex justify-end'>
-          <Btn text="すべてのお知らせを見る" href="/news" />
+          <Btn text="すべてのお知らせを見る" href="/news" aria-label="すべてのお知らせを見る" />
         </div>
       </div>
     </section>

@@ -65,7 +65,7 @@ export default function Info() {
             <div ref={mapContainerRef} className="aspect-[16/9] w-full mb-12 bg-gray-100 flex items-center justify-center">
               {mapLoaded ? (
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3235.4022222362703!2d139.7133671768275!3d35.80212491691642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018c11c7ebc3e99%3A0x5de19cbdcb1a7d9b!2z5pel5pys44CB44CSMzMyLTAwMTcg5Z-8546J55yM5bed5Y-j5biC5qCE55S677yS5LiB55uu77yR4oiS77yS77yW!5e0!3m2!1sja!2sjp!4v1718530124!5m2!1sja!2sjp" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3235.8783116811155!2d139.71914037564719!3d35.80292062328001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018936e280cb867%3A0x138d22832c645221!2z5Ymy54O5IOelnuiwtw!5e0!3m2!1sja!2sjp!4v1745768247806!5m2!1sja!2sjp" 
                   width="100%" 
                   height="100%" 
                   style={{ border: 0 }} 

@@ -46,7 +46,7 @@ export default function Header() {
       ${isHomePage && isHeroVisible ? '-top-24 opacity-0' : 'top-0 opacity-100'}`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link href="/" className="relative z-50">
+        <Link href="/" className="relative z-50" aria-label="割烹 神谷 ホームページ">
           <div className="flex flex-col items-center h-24 w-24">
           {isMounted ? (
               <video
@@ -111,6 +111,7 @@ export default function Header() {
                 <Link 
                   href={item.href} 
                   className="py-2 block hover:text-accent transition-colors duration-300"
+                  aria-label={item.label}
                 >
                   {item.label}
                 </Link>
@@ -147,6 +148,7 @@ export default function Header() {
                       href={item.href} 
                       onClick={() => setIsMenuOpen(false)} 
                       className="py-2 px-4 block transition-colors duration-300 hover:text-accent"
+                      aria-label={item.label}
                     >
                       {item.label}
                     </Link>

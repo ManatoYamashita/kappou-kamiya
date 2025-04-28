@@ -74,6 +74,7 @@ const Btn: React.FC<BtnProps> = ({
         className={combinedClasses}
         onClick={loading ? (e) => e.preventDefault() : undefined}
         aria-disabled={loading}
+        aria-label={loading ? '読み込み中...' : text}
       >
         {buttonContent}
       </Link>

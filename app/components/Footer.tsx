@@ -45,7 +45,7 @@ export default function Footer() {
               〒332-0017<br />
               埼玉県川口市栄町2-1-26<br />
               神谷ビル1･2F<br />
-              TEL: <Link href="tel:050-5487-4317" className="hover:text-accent transition-colors">050-5487-4317</Link>
+              TEL: <Link href="tel:050-5487-4317" className="hover:text-accent transition-colors" aria-label="電話番号を呼び出す">050-5487-4317</Link>
             </address>
           </div>
           
@@ -62,16 +62,16 @@ export default function Footer() {
             <h3 className="font-mincho text-xl mb-4">リンク</h3>
             <ul className="space-y-2 text-paper/80">
               <li>
-                <Link href="/#concept" className="hover:text-accent transition-colors">店舗理念</Link>
+                <Link href="/#concept" className="hover:text-accent transition-colors" aria-label="店舗理念へ移動">店舗理念</Link>
               </li>
               <li>
-                <Link href="/#menu" className="hover:text-accent transition-colors">お品書き</Link>
+                <Link href="/#menu" className="hover:text-accent transition-colors" aria-label="お品書きへ移動">お品書き</Link>
               </li>
               <li>
-                <Link href="/#info" className="hover:text-accent transition-colors">店舗情報</Link>
+                <Link href="/#info" className="hover:text-accent transition-colors" aria-label="店舗情報へ移動">店舗情報</Link>
               </li>
               <li>
-                <Link href="/#access" className="hover:text-accent transition-colors">アクセス</Link>
+                <Link href="/#access" className="hover:text-accent transition-colors" aria-label="アクセスへ移動">アクセス</Link>
               </li>
               {/* <li>
                 <Link href="tel:050-5487-4317" className="hover:text-accent transition-colors">ご予約</Link>
