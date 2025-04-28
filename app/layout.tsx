@@ -295,6 +295,14 @@ export default function RootLayout({
         className={`${notoSans.variable} ${mincho.variable} font-sans antialiased bg-paper text-ink`}
         suppressHydrationWarning
       >
+        <a 
+          href="#main-content" 
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-paper focus:outline-none"
+          tabIndex={0}
+          aria-label="メインコンテンツにスキップ"
+        >
+          メインコンテンツにスキップ
+        </a>
         <Header />
         <PageTransition />
         <PageContent>

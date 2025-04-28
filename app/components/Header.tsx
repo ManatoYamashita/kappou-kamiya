@@ -112,6 +112,7 @@ export default function Header() {
                   href={item.href} 
                   className="py-2 block hover:text-accent transition-colors duration-300"
                   aria-label={item.label}
+                  tabIndex={0}
                 >
                   {item.label}
                 </Link>
@@ -149,6 +150,7 @@ export default function Header() {
                       onClick={() => setIsMenuOpen(false)} 
                       className="py-2 px-4 block transition-colors duration-300 hover:text-accent"
                       aria-label={item.label}
+                      tabIndex={0}
                     >
                       {item.label}
                     </Link>

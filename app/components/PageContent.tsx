@@ -67,6 +67,8 @@ export default function PageContent({ children }: { children: React.ReactNode })
     <div 
       ref={contentRef} 
       className={`min-h-screen page-content ${isLoaded || isRootPath ? 'is-loaded' : ''}`}
+      id="main-content"
+      aria-label="メインコンテンツ"
     >
       {children}
     </div>

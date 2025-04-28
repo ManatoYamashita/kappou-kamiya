@@ -78,7 +78,7 @@ export default function Info() {
               ) : (
                 <div className="text-center p-8">
                   <div className="animate-pulse h-6 w-32 bg-gray-200 rounded mx-auto mb-4"></div>
-                  <p className="text-gray-400">地図を読み込み中...</p>
+                  <p className="text-gray-700">地図を読み込み中...</p>
                 </div>
               )}
             </div>
