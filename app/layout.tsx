@@ -247,6 +247,15 @@ export default function RootLayout({
         {/* <meta name="theme-color" content="#f7f4ed" /> */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <Script
+          id="consent-manager"
+          src="https://cdn.consentmanager.net/delivery/autoblocking/92a399f462520.js"
+          data-cmp-ab="1"
+          data-cmp-host="b.delivery.consentmanager.net"
+          data-cmp-cdn="cdn.consentmanager.net"
+          data-cmp-codesrc="16"
+          strategy="lazyOnload"
+        />
+        <Script
           id="json-ld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
