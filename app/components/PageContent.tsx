@@ -30,7 +30,7 @@ export default function PageContent({ children }: { children: React.ReactNode })
     
     // 初期状態
     gsap.set(contentRef.current, { 
-      opacity: 0,
+      opacity: 0.01,
       scale: 1.1,
       y: 50
     });

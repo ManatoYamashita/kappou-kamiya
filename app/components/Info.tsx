@@ -103,14 +103,13 @@ export default function Info() {
         </div>
       </section>
       
-      {/* <section id="access" className="py-24 md:py-32 bg-ink text-paper">
+      <section id="access" className="py-24 md:py-32 bg-ink text-paper">
         <div className="container mx-auto px-4">
           <h2 className="font-mincho text-3xl md:text-4xl text-center mb-16">
             <span className="inline-block border-b border-accent pb-2">アクセス</span>
           </h2>
           
           <div className="max-w-4xl mx-auto">
-            
             <div className="grid md:grid-cols-2 gap-12">
               <div>
                 <h3 className="font-mincho text-xl mb-6 border-l-4 border-accent pl-3">電車でお越しの方</h3>
@@ -129,7 +128,7 @@ export default function Info() {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
     </>
   );
 } 
