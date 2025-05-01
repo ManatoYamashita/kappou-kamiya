@@ -1,5 +1,7 @@
 # 割烹 神谷 Website
 
+[k-kamiya.net](https://k-kamiya.net)
+
 ![ogp](https://github.com/user-attachments/assets/f6fd26f2-5e5b-4427-b2f1-670f2bcee032)
 
 
@@ -123,3 +125,22 @@ npm run start
 ## LICENSE
 
 © 2024 割烹 神谷 All Rights Reserved.
+
+## Sitemap
+
+サイトマップは次の2つの方法で実装されています：
+
+1. **static sitemap.xml**: `/public/sitemap.xml` にある静的なサイトマップファイル
+2. **dynamic sitemap.ts**: `/app/sitemap.ts` にあるNext.js 13 App Routerで動的に生成されるサイトマップ
+
+動的サイトマップはMicroCMSから投稿されたニュース記事のURLも自動的に含みます。
+
+## SEO対策
+
+以下のSEO対策が実装されています：
+
+1. **メタデータ**: 各ページに適切なtitle, description, keywordsを設定
+2. **構造化データ**: JSON-LDによるレストラン情報のマークアップ
+3. **サイトマップ**: XMLサイトマップとNext.js動的サイトマップの両方を実装
+4. **robots.txt**: 検索エンジンのクローラー向けの適切な指示を記載
+5. **OGP**: SNSシェア時の表示最適化のためのOpen Graph Protocol設定

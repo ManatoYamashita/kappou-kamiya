@@ -94,9 +94,13 @@ export default function Menu() {
   
   // スクロール可能性の確認
   useEffect(() => {
+    // ref.currentを変数にキャプチャ
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
     const checkScrollable = () => {
-      if (scrollContainerRef.current) {
-        const { scrollWidth, clientWidth } = scrollContainerRef.current;
+      if (scrollContainer) {
+        const { scrollWidth, clientWidth } = scrollContainer;
         setCanScrollRight(scrollWidth > clientWidth);
       }
     };
@@ -107,17 +111,17 @@ export default function Menu() {
     
     // スクロール位置の監視
     const handleScroll = () => {
-      if (scrollContainerRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      if (scrollContainer) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
         setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 10);
       }
     };
     
-    scrollContainerRef.current?.addEventListener('scroll', handleScroll);
+    scrollContainer.addEventListener('scroll', handleScroll);
     
     return () => {
       window.removeEventListener('resize', checkScrollable);
-      scrollContainerRef.current?.removeEventListener('scroll', handleScroll);
+      scrollContainer.removeEventListener('scroll', handleScroll);
     };
   }, [filteredMenuItems]);
   

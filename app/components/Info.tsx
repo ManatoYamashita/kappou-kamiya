@@ -32,6 +32,9 @@ export default function Info() {
   useEffect(() => {
     if (!mapContainerRef.current) return;
 
+    // ref.currentを変数にキャプチャ
+    const mapContainer = mapContainerRef.current;
+
     const mapObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -44,12 +47,11 @@ export default function Info() {
       { rootMargin: '200px 0px' } // 表示される200px手前で読み込み開始
     );
     
-    mapObserver.observe(mapContainerRef.current);
+    mapObserver.observe(mapContainer);
     
     return () => {
-      if (mapContainerRef.current) {
-        mapObserver.unobserve(mapContainerRef.current);
-      }
+      // キャプチャした変数を使用
+      mapObserver.unobserve(mapContainer);
     };
   }, [mapLoaded]);
   

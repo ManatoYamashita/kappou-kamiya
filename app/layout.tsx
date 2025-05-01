@@ -37,8 +37,8 @@ export const viewport: Viewport = {
 // 既存のmetadataからviewportとthemeColorを削除
 export const metadata: Metadata = {
   title: "割烹 神谷 | 川口の和食・しゃぶしゃぶ",
-  description: "埼玉県川口市で四季の移ろいを感じる本格的な日本料理。旬の食材と熟練の技で織りなす割烹料理をご堪能ください。",
-  keywords: "割烹, 神谷, 日本料理, 懐石, 川口, 旬, 和食, 個室, 接待, 法事",
+  description: "埼玉県川口市で四季の移ろいを感じる本格的な日本料理。旬の食材と熟練の技で織りなす割烹料理をご堪能ください。慶事・法事・接待にぴったりの個室もご用意しております。",
+  keywords: "割烹, 神谷, 日本料理, 懐石, 川口, 埼玉, 旬, 和食, 個室, 接待, 法事, 慶事, 会席料理, 宴会, 忘年会, しゃぶしゃぶ, 老舗, 三代目, 季節料理, 伝統料理",
   robots: "index, follow",
   alternates: {
     canonical: siteUrl,
@@ -216,25 +216,35 @@ export default function RootLayout({
     "event": [
       {
         "@type": "Event",
-        "name": "季節の会席料理特別コース",
-        "description": "春の味覚を存分に楽しめる特別コースをご用意しました。桜の季節限定のメニューです。",
+        "name": "季節の懐石 花コース",
+        "description": "前菜、土瓶蒸し、刺身、牛ヒレ肉変り焼など全8品の贅沢コース",
         "startDate": "2024-03-01",
-        "endDate": "2024-04-30",
+        // "endDate": "2024-04-30",
+        "location": {
+          "@type": "Place",
+          "name": "割烹 神谷",
+          "address": "埼玉県川口市市栄町1-1-1"
+        },
         "offers": {
           "@type": "Offer",
-          "price": "12000",
+          "price": "8800",
           "priceCurrency": "JPY"
         }
       },
       {
         "@type": "Event",
-        "name": "夏の涼風会席",
-        "description": "暑い夏に涼を感じる特別会席。鮎や鱧など夏の食材をふんだんに使用したコースです。",
+        "name": "牛しゃぶしゃぶ・檜（ひのき）コース",
+        "description": "前菜、刺身、上しゃぶしゃぶ（上和牛霜降肉）など全11品の贅沢なコース",
         "startDate": "2024-07-01",
-        "endDate": "2024-08-31",
+        // "endDate": "2024-08-31",
+        "location": {
+          "@type": "Place",
+          "name": "割烹 神谷",
+          "address": "埼玉県川口市市栄町1-1-1"
+        },
         "offers": {
           "@type": "Offer",
-          "price": "11000",
+          "price": "9900",
           "priceCurrency": "JPY"
         }
       }

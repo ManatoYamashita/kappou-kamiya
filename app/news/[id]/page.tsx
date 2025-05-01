@@ -2,6 +2,7 @@ import { client } from '../../../libs/microcms';
 import dayjs from 'dayjs';
 import { notFound } from 'next/navigation';
 import ArticleContent from './ArticleContent';
+import { Metadata } from 'next';
 
 // ブログ記事の型定義
 export type Props = {
@@ -32,6 +33,39 @@ async function getBlogPost(id: string): Promise<Props | null> {
     console.error('microCMS APIエラー:', error);
     return null; // エラーの場合はnullを返す
   }
+}
+
+// 動的なメタデータの生成
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const post = await getBlogPost(id);
+  
+  if (!post) {
+    return {
+      title: 'お知らせ - 記事が見つかりません | 割烹 神谷',
+      description: '指定された記事は見つかりませんでした。',
+    };
+  }
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kappou-kamiya.vercel.app';
+  
+  return {
+    title: `${post.title} | 割烹 神谷`,
+    description: post.description || '割烹 神谷からのお知らせです。',
+    keywords: `${post.title}, ${post.category?.name || 'お知らせ'}, 割烹神谷, 川口, 和食, ${post.category?.name ? post.category.name + ',' : ''} 季節の料理`,
+    alternates: {
+      canonical: `${siteUrl}/news/${post.id}`,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: `${siteUrl}/news/${post.id}`,
+      images: post.thumbnail ? [{ url: post.thumbnail.url }] : undefined,
+      type: 'article',
+      publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt,
+    },
+  };
 }
 
 // 記事詳細ページの生成 (サーバーコンポーネント)
