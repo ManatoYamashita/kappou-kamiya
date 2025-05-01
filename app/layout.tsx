@@ -220,6 +220,7 @@ export default function RootLayout({
         "description": "前菜、土瓶蒸し、刺身、牛ヒレ肉変り焼など全8品の贅沢コース",
         "startDate": "2024-03-01",
         // "endDate": "2024-04-30",
+        "image": "/images/menu-hana.webp",
         "location": {
           "@type": "Place",
           "name": "割烹 神谷",
@@ -237,6 +238,7 @@ export default function RootLayout({
         "description": "前菜、刺身、上しゃぶしゃぶ（上和牛霜降肉）など全11品の贅沢なコース",
         "startDate": "2024-07-01",
         // "endDate": "2024-08-31",
+        "image": "/images/menu-hinoki.webp",
         "location": {
           "@type": "Place",
           "name": "割烹 神谷",
