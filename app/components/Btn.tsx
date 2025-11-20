@@ -10,6 +10,7 @@ interface BtnProps {
   loading?: boolean; // 読み込み中かどうか（省略可能）
   target?: '_blank' | '_self' | '_parent' | '_top'; // リンクのターゲット
   rel?: string; // rel 属性（外部リンク用）
+  className?: string; // 追加のクラス名
 }
 
 /**
@@ -27,7 +28,8 @@ const Btn: React.FC<BtnProps> = ({
   color = 'black', 
   loading = false,
   target,
-  rel
+  rel,
+  className = ''
 }) => {
   // テキストの色とアンダーラインの色を設定
   const textColor = color === 'white' ? 'text-white' : 'text-black';
@@ -68,7 +70,7 @@ const Btn: React.FC<BtnProps> = ({
   // 共通のクラス
   const commonClasses = "border-none bg-transparent cursor-pointer flex items-center group";
   const disabledClasses = loading ? "pointer-events-none opacity-80" : "";
-  const combinedClasses = `${commonClasses} ${disabledClasses}`;
+  const combinedClasses = `${commonClasses} ${disabledClasses} ${className}`.trim();
 
   // hrefが指定されている場合はLinkでラップ
   if (href) {

@@ -1,9 +1,29 @@
+'use client';
+
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import Btn from './Btn';
 
 const OSECHI_URL = 'https://kamiya.base.ec/categories/4774666';
+const OSECHI_IMAGES = [
+  { src: '/images/osechi/osechi-1.webp', alt: '割烹神谷 特製おせち 二段重' },
+  { src: '/images/osechi/osechi-2.webp', alt: '割烹神谷 特製おせち 盛り付け' }
+];
 
 export default function Osechi() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % OSECHI_IMAGES.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <section id="osechi" className="bg-ink text-paper py-16 md:py-24">
       <div className="container mx-auto px-4">
@@ -32,19 +52,62 @@ export default function Osechi() {
                 color="white"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="bg-black px-6 py-3 rounded-full shadow-lg text-white hover:bg-black/80 transition-colors"
                 aria-label="おせちを購入する"
               />
             </div>
           </div>
           <div className="md:w-1/2">
             <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-              <Image
-                src="/images/menu-hana.webp"
-                alt="割烹神谷 特製おせちの盛り付け"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+              <div
+                className="absolute inset-0 flex h-full w-full transition-transform duration-700 ease-in-out"
+                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              >
+                {OSECHI_IMAGES.map((image) => (
+                  <div key={image.src} className="relative w-full flex-shrink-0 h-full">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* ナビゲーションボタン */}
+              <button
+                type="button"
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-2 hover:bg-black/60 transition"
+                onClick={() => setCurrentIndex((prev) => (prev - 1 + OSECHI_IMAGES.length) % OSECHI_IMAGES.length)}
+                aria-label="前の画像"
+              >
+                &lt;
+              </button>
+              <button
+                type="button"
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-2 hover:bg-black/60 transition"
+                onClick={() => setCurrentIndex((prev) => (prev + 1) % OSECHI_IMAGES.length)}
+                aria-label="次の画像"
+              >
+                &gt;
+              </button>
+
+              {/* ドットインジケーター */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+                {OSECHI_IMAGES.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    className={`h-1.5 w-1.5 rounded-full ${
+                      index === currentIndex ? 'bg-white' : 'bg-white/30'
+                    }`}
+                    onClick={() => goToSlide(index)}
+                    aria-label={`画像${index + 1}に切り替え`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
