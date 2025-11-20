@@ -1,15 +1,23 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [isMounted, setIsMounted] = useState(false);
-  
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
     setIsMounted(true);
+
+    // 動画の自動再生設定（iOS対応）
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error('Footer logo video autoplay failed:', error);
+      });
+    }
   }, []);
   
   return (
@@ -21,10 +29,12 @@ export default function Footer() {
               <div className="w-24 h-24 relative">
                 {isMounted ? (
                   <video
-                    poster="/images/kamiya-logo.webp"
-                    muted
-                    playsInline
+                    ref={videoRef}
                     autoPlay
+                    muted
+                    loop
+                    playsInline
+                    poster="/images/kamiya-logo.webp"
                     className="w-full h-full object-contain"
                     suppressHydrationWarning
                   >

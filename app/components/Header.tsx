@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -10,11 +10,19 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeroVisible, setIsHeroVisible] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const pathname = usePathname();
   const isHomePage = pathname === '/';
 
   useEffect(() => {
     setIsMounted(true);
+
+    // 動画の自動再生設定（iOS対応）
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error('Header logo video autoplay failed:', error);
+      });
+    }
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -50,10 +58,12 @@ export default function Header() {
           <div className="flex flex-col items-center h-24 w-24">
           {isMounted ? (
               <video
-                poster="/images/kamiya-logo.webp"
+                ref={videoRef}
+                autoPlay
                 muted
                 loop
                 playsInline
+                poster="/images/kamiya-logo.webp"
                 className="w-full h-full object-contain"
                 suppressHydrationWarning
               >

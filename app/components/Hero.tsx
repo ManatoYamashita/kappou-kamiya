@@ -32,10 +32,11 @@ export default function Hero() {
             {isMounted ? (
               <video
                 ref={videoRef}
-                poster="/images/kamiya-logo.webp"
-                muted
                 autoPlay
+                muted
+                loop
                 playsInline
+                poster="/images/kamiya-logo.webp"
                 className="w-full h-full object-contain"
                 suppressHydrationWarning
               >
