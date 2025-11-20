@@ -8,6 +8,8 @@ interface BtnProps {
   onClick?: () => void; // クリックイベントハンドラ（省略可能）
   color?: 'black' | 'white'; // ボタンの色（省略可能）
   loading?: boolean; // 読み込み中かどうか（省略可能）
+  target?: '_blank' | '_self' | '_parent' | '_top'; // リンクのターゲット
+  rel?: string; // rel 属性（外部リンク用）
 }
 
 /**
@@ -23,7 +25,9 @@ const Btn: React.FC<BtnProps> = ({
   href, 
   onClick, 
   color = 'black', 
-  loading = false 
+  loading = false,
+  target,
+  rel
 }) => {
   // テキストの色とアンダーラインの色を設定
   const textColor = color === 'white' ? 'text-white' : 'text-black';
@@ -75,6 +79,8 @@ const Btn: React.FC<BtnProps> = ({
         onClick={loading ? (e) => e.preventDefault() : undefined}
         aria-disabled={loading}
         aria-label={loading ? '読み込み中...' : text}
+        target={target}
+        rel={rel}
       >
         {buttonContent}
       </Link>

@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Btn from './Btn';
 
+const OSECHI_URL = 'https://kamiya.base.ec/categories/4774666';
+
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMounted, setIsMounted] = useState(false);
@@ -85,9 +87,16 @@ export default function Hero() {
             </ul>
           </nav>
 
-          {/* 予約ボタン */}
-          <div className="mt-8 mb-16">
+          {/* 予約・おせちボタン */}
+          <div className="mt-8 mb-16 flex flex-col items-center gap-6 md:flex-row">
             <Btn text="ご予約 Reserve" href="#reserve" aria-label="ご予約 Reserve" />
+            <Btn 
+              text="おせちの購入 Order"
+              href={OSECHI_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="おせちの購入 Order"
+            />
           </div>
         </div>
       </div>

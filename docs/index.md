@@ -5,14 +5,15 @@
 このドキュメントは、割烹神谷（Kappou Kamiya）プロジェクトの技術仕様、開発ガイド、運用手順をまとめたものです。
 
 ### プロジェクト概要
-三代続く川口の老舗日本料理店「割烹 神谷」の公式ウェブサイト。Next.js 15 + React 19 + TailwindCSS 4を使用した現代的なHeadless CMS統合型Webアプリケーションです。
+三代続く川口の老舗日本料理店「割烹 神谷」の公式ウェブサイト。Next.js 16 + React 19 + TailwindCSS 4を使用した現代的なHeadless CMS統合型Webアプリケーションです。
 
 ### 技術スタック
-- **フレームワーク**: Next.js 15.3.1 (App Router)
-- **React**: 19.0.0
+- **フレームワーク**: Next.js 16.0.3 (App Router with Turbopack)
+- **React**: 19.2.0
 - **スタイリング**: TailwindCSS 4.0
 - **CMS**: MicroCMS
 - **アニメーション**: GSAP 3.12.7, Framer Motion 12.8.0
+- **AI開発ツール**: next-devtools-mcp (MCP Server)
 
 ---
 
@@ -76,6 +77,10 @@
 
 - **[Error Handling](./integrations/microcms/error-handling.md)**
   - エラーの種類、ハンドリングパターン、リトライロジック
+
+#### Next.js DevTools MCP
+- **[Setup Guide](./integrations/next-devtools-mcp/setup.md)**
+  - MCPサーバーの設定、AI開発ツールとの統合、使用方法
 
 ---
 
@@ -240,25 +245,26 @@ Webサイトのパフォーマンスを向上させる戦略です。
 |---|---|
 | Architecture | 4 |
 | Components | 7 |
-| Integrations | 2 |
+| Integrations | 3 |
 | Styling | 1 |
 | Performance | 1 |
 | SEO | 1 |
 | Deployment | 1 |
 | Development | 1 |
 | Troubleshooting | 1 |
-| **合計** | **19** |
+| **合計** | **20** |
 
 ---
 
 ## 🔄 最終更新
 
-**更新日**: 2024-11-20
+**更新日**: 2025-11-20
 
 **更新内容**:
-- 初回ドキュメント作成
-- 全19ドキュメントを体系化
-- クイックスタートガイド追加
+- Next.js 16.0.3へのアップグレード
+- Turbopackがデフォルトバンドラーに
+- Next.js DevTools MCP統合ドキュメント追加
+- 全20ドキュメントに更新
 
 ---
 

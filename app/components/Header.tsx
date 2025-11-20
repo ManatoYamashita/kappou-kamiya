@@ -103,6 +103,7 @@ export default function Header() {
             {[
               { href: '/#concept', label: '店舗理念' },
               { href: '/#menu', label: 'お品書き' },
+              { href: '/#osechi', label: 'おせちの購入' },
               { href: '/#info', label: '店舗情報' },
               { href: '/#access', label: 'アクセス' },
               { href: 'tel:050-5487-4317', label: 'ご予約' }
@@ -140,6 +141,7 @@ export default function Header() {
                 {[
                   { href: '/#concept', label: '店舗理念' },
                   { href: '/#menu', label: 'お品書き' },
+                  { href: '/#osechi', label: 'おせちの購入' },
                   { href: '/#info', label: '店舗情報' },
                   { href: '/#access', label: 'アクセス' },
                   { href: 'tel:050-5487-4317', label: 'ご予約' }
