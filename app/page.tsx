@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Hero from './components/Hero';
 import Concept from './components/Concept';
 import Menu from './components/Menu';
+import Osechi from './components/Osechi';
 import Info from './components/Info';
 import Footer from './components/Footer';
 import News from './components/News';
@@ -18,6 +19,7 @@ export default function Home() {
         <News />
         <Concept />
         <Menu />
+        <Osechi />
         <Info />
       </main>
       <Footer />

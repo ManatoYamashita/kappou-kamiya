@@ -6,16 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "dayjs": "^1.11.13",
     "framer-motion": "^12.8.0",
     "gsap": "^3.12.7",
     "microcms-js-sdk": "^3.2.0",
-    "next": "^15.5.6",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "next": "^16.0.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -25,7 +25,7 @@
     "@types/react-dom": "^19",
     "critters": "^0.0.25",
     "eslint": "^9",
-    "eslint-config-next": "15.3.1",
+    "eslint-config-next": "^16.0.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

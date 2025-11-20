@@ -16,14 +16,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Tech Stack
 
-- **Framework**: Next.js 15.3.1 (App Router)
-- **React**: 19.0.0
+- **Framework**: Next.js 16.0.3 (App Router with Turbopack)
+- **React**: 19.2.0
 - **Styling**: TailwindCSS 4.0
 - **Fonts**: Noto Sans JP, Shippori Mincho (Google Fonts)
 - **Animation**: GSAP 3.12.7, Framer Motion 12.8.0
 - **CMS**: MicroCMS (microcms-js-sdk 3.2.0)
 - **Date Handling**: dayjs 1.11.13
 - **Deployment**: Vercel推奨
+- **AI Development Tools**: next-devtools-mcp (MCP Server for AI-assisted debugging)
 
 ## Development Commands
 
@@ -47,6 +48,40 @@ npm run start
 ```bash
 npm run lint
 ```
+
+**注意**: Next.js 16では`next lint`コマンドが削除されました。現在はESLintを直接使用しています。
+
+## Next.js 16の主要な変更点
+
+### Turbopackがデフォルトに
+Next.js 16では、Turbopackがデフォルトのバンドラーになりました。Webpackを使用する場合は`--webpack`フラグを使用してください。
+
+### Breaking Changes
+- **Node.js 20.9+**と**TypeScript 5.1+**が必須
+- **`next lint`コマンドの削除**: ESLintを直接使用
+- **Async params**: `params`と`searchParams`に`await`が必要（既に対応済み）
+- **Async utilities**: `cookies()`, `headers()`, `draftMode()`が非同期に
+- **middleware.ts廃止**: `proxy.ts`にリネーム（本プロジェクトでは未使用）
+
+### next-devtools-mcp
+Next.js 16は、MCP（Model Context Protocol）をサポートしています。`.mcp.json`ファイルを使用して、AI開発ツールとの統合が可能です。
+
+```json
+{
+  "mcpServers": {
+    "next-devtools": {
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"]
+    }
+  }
+}
+```
+
+このMCPサーバーは、以下の機能を提供します：
+- ビルドエラーとランタイムエラーのリアルタイム診断
+- ページメタデータとServer Action定義へのアクセス
+- 開発サーバーログの統合表示
+- Next.js公式ドキュメントへの直接アクセス
 
 ## Environment Variables
 
@@ -99,6 +134,7 @@ kappou-kamiya/
 ├── .cursor/
 │   └── rules/
 │       └── nextjs15-react19-cursorrulues.mdc # Cursorルール（参照推奨）
+├── .mcp.json                    # MCP Server設定（next-devtools-mcp）
 └── next.config.ts               # Next.js設定（画像最適化、CSP等）
 ```
 
