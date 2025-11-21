@@ -45,14 +45,25 @@ export default function Header() {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="relative z-50" aria-label="割烹 神谷 ホームページ">
           <div className="flex flex-col items-center h-24 w-24">
-            <Image
-              src="/images/kamiya-logo.webp"
-              alt="割烹 神谷 ロゴ"
-              width={128}
-              height={128}
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/images/kamiya-logo.webp"
               className="w-full h-full object-contain"
-              priority
-            />
+            >
+              <source src="/images/kamiya-logo.webm" type="video/webm" />
+              {/* フォールバック画像（videoがサポートされていない場合） */}
+              <Image
+                src="/images/kamiya-logo.webp"
+                alt="割烹 神谷 ロゴ"
+                width={128}
+                height={128}
+                className="w-full h-full object-contain"
+                priority
+              />
+            </video>
           </div>
         </Link>
 

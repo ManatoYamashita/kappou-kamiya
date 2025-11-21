@@ -32,12 +32,21 @@ export default function Footer() {
                     ref={videoRef}
                     autoPlay
                     muted
+                    loop
                     playsInline
                     poster="/images/kamiya-logo.webp"
                     className="w-full h-full object-contain"
                     suppressHydrationWarning
                   >
                     <source src="/images/kamiya-logo.webm" type="video/webm" />
+                    {/* フォールバック画像（videoがサポートされていない場合） */}
+                    <Image
+                      src="/images/kamiya-logo.webp"
+                      alt="割烹 神谷 ロゴ"
+                      width={96}
+                      height={96}
+                      className="w-full h-full object-contain"
+                    />
                   </video>
                 ) : (
                   <Image
