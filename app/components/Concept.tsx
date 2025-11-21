@@ -78,7 +78,7 @@ export default function Concept() {
                 </p>
                 
                 <div className="mt-8">
-                  <Btn text="詳しく読む" href="#" color="white" />
+                  <Btn text="詳しく読む" href="#" variant="primary-white" />
                 </div>
               </div>
             </div>

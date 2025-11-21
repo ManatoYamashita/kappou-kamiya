@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -9,21 +9,10 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeroVisible, setIsHeroVisible] = useState(true);
-  const [isMounted, setIsMounted] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const pathname = usePathname();
   const isHomePage = pathname === '/';
 
   useEffect(() => {
-    setIsMounted(true);
-
-    // 動画の自動再生設定（iOS対応）
-    if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.error('Header logo video autoplay failed:', error);
-      });
-    }
-
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
@@ -56,28 +45,14 @@ export default function Header() {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="relative z-50" aria-label="割烹 神谷 ホームページ">
           <div className="flex flex-col items-center h-24 w-24">
-          {isMounted ? (
-              <video
-                ref={videoRef}
-                autoPlay
-                muted
-                loop
-                playsInline
-                poster="/images/kamiya-logo.webp"
-                className="w-full h-full object-contain"
-                suppressHydrationWarning
-              >
-                <source src="/images/kamiya-logo.webm" type="video/webm" />
-              </video>
-            ) : (
-              <Image
-                src="/images/kamiya-logo.webp"
-                alt="割烹 神谷 ロゴ"
-                width={128}
-                height={128}
-                className="w-full h-full object-contain"
-              />
-            )}
+            <Image
+              src="/images/kamiya-logo.webp"
+              alt="割烹 神谷 ロゴ"
+              width={128}
+              height={128}
+              className="w-full h-full object-contain"
+              priority
+            />
           </div>
         </Link>
 
@@ -111,12 +86,11 @@ export default function Header() {
         }`}>
           <ul className="flex space-x-10 font-mincho tracking-[0.15em] text-sm">
             {[
-              { href: '/#concept', label: '店舗理念' },
               { href: '/#menu', label: 'お品書き' },
-              { href: '/#osechi', label: 'おせちの購入' },
+              { href: '/news', label: 'お知らせ' },
               { href: '/#info', label: '店舗情報' },
-              { href: '/#access', label: 'アクセス' },
-              { href: 'tel:050-5487-4317', label: 'ご予約' }
+              { href: 'tel:050-5487-4317', label: 'ご予約' },
+              { href: '/#osechi', label: 'おせちの購入' },
             ].map((item, index) => (
               <li key={index} className="relative group">
                 <Link 
@@ -149,12 +123,11 @@ export default function Header() {
             <nav>
               <ul className="flex flex-col space-y-8 font-mincho text-lg text-center">
                 {[
-                  { href: '/#concept', label: '店舗理念' },
                   { href: '/#menu', label: 'お品書き' },
-                  { href: '/#osechi', label: 'おせちの購入' },
+                  { href: '/news', label: 'お知らせ' },
                   { href: '/#info', label: '店舗情報' },
-                  { href: '/#access', label: 'アクセス' },
-                  { href: 'tel:050-5487-4317', label: 'ご予約' }
+                  { href: 'tel:050-5487-4317', label: 'ご予約' },
+                  { href: '/#osechi', label: 'おせちの購入' },
                 ].map((item, index) => (
                   <li key={index} className="relative">
                     <Link 

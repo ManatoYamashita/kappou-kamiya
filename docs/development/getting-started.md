@@ -35,7 +35,7 @@ npm install
 ```
 
 **インストールされるパッケージ**:
-- Next.js 15.3.1
+- Next.js 16.0.3
 - React 19.0.0
 - TailwindCSS 4.0
 - GSAP 3.12.7

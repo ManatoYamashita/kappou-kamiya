@@ -34,7 +34,6 @@ export default function Hero() {
                 ref={videoRef}
                 autoPlay
                 muted
-                loop
                 playsInline
                 poster="/images/kamiya-logo.webp"
                 className="w-full h-full object-contain"
@@ -90,14 +89,15 @@ export default function Hero() {
 
           {/* 予約・おせちボタン */}
           <div className="mt-8 mb-16 flex flex-col items-center gap-6 md:flex-row">
-            <Btn text="ご予約 Reserve" href="#reserve" aria-label="ご予約 Reserve" />
             <Btn 
-              text="おせちの購入 Order"
+              text="おせちの購入"
               href={OSECHI_URL}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="おせちの購入 Order"
+              aria-label="おせちの購入"
+              variant="primary"
             />
+            <Btn text="ご予約" href="#reserve" aria-label="ご予約" variant="default" />
           </div>
         </div>
       </div>
