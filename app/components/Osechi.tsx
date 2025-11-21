@@ -12,6 +12,8 @@ const OSECHI_IMAGES = [
 
 export default function Osechi() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -22,6 +24,36 @@ export default function Osechi() {
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
+  };
+
+  // タッチイベントハンドラー（スマホのフリック操作用）
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+
+    const distance = touchStartX - touchEndX;
+    const minSwipeDistance = 50; // 最小スワイプ距離（50px）
+
+    if (Math.abs(distance) < minSwipeDistance) return;
+
+    if (distance > 0) {
+      // 左にスワイプ → 次の画像
+      setCurrentIndex((prev) => (prev + 1) % OSECHI_IMAGES.length);
+    } else {
+      // 右にスワイプ → 前の画像
+      setCurrentIndex((prev) => (prev - 1 + OSECHI_IMAGES.length) % OSECHI_IMAGES.length);
+    }
+
+    // リセット
+    setTouchStartX(0);
+    setTouchEndX(0);
   };
 
   return (
@@ -61,6 +93,9 @@ export default function Osechi() {
               <div
                 className="absolute inset-0 flex h-full w-full transition-transform duration-700 ease-in-out"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
               >
                 {OSECHI_IMAGES.map((image) => (
                   <div key={image.src} className="relative w-full flex-shrink-0 h-full">
