@@ -1,7 +1,0 @@
-# robots.txt for https://k-kamiya.net
-
-User-agent: *
-Allow: /
-
-# サイトマップの場所を指定
-Sitemap: https://kappou-kamiya.vercel.app/sitemap.xml 

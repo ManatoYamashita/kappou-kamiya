@@ -144,21 +144,21 @@ export default function ArticleContent({
         
         // 画像ソース、代替テキスト、サイズを取得
         const src = img.getAttribute('src') || '';
-        const alt = img.getAttribute('alt') || '';
-        
+        const alt = img.getAttribute('alt') || `${post.title}の画像`;
+
         // width/heightが両方指定されていても、fillを使わないようにする
         if (src && parent) {
           // 既存の画像を削除
           img.remove();
-          
+
           // 新しいdiv要素を作成して画像をラップ
           const wrapper = document.createElement('div');
           wrapper.className = 'image-wrapper aspect-video relative';
           wrapper.style.width = '100%';
-          
+
           // 元の親要素に挿入
           parent.appendChild(wrapper);
-          
+
           // Next.js Imageコンポーネントの代わりにimg要素を使用
           const newImg = document.createElement('img');
           newImg.src = src;
@@ -166,7 +166,7 @@ export default function ArticleContent({
           newImg.className = 'w-full h-auto';
           newImg.setAttribute('loading', 'lazy');
           newImg.setAttribute('decoding', 'async');
-          
+
           // 新しいラッパーに画像を追加
           wrapper.appendChild(newImg);
         }
@@ -235,7 +235,7 @@ export default function ArticleContent({
             <div className="max-h-[500px] overflow-hidden">
               <Image
                 src={post.thumbnail.url}
-                alt={post.thumbnail.alt || ""}
+                alt={post.thumbnail.alt || post.title}
                 width={1200}
                 height={675}
                 className="w-full object-cover"

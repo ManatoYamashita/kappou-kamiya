@@ -198,9 +198,15 @@ export default function Menu() {
             
             {/* スクロールインジケーター */}
             {canScrollRight && (
-              <div 
+              <div
                 className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-60 rounded-l-full p-2 shadow-md hover:bg-opacity-80 cursor-pointer transition-all duration-300"
                 onClick={handleScrollToEnd}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleScrollToEnd();
+                  }
+                }}
                 aria-label="右端までスクロール"
                 role="button"
                 tabIndex={0}

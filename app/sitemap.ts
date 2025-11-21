@@ -10,7 +10,7 @@ async function getAllPostIds() {
     const data = await client.get({
       endpoint: 'news',
       queries: {
-        fields: 'id,publishedAt',
+        fields: 'id,publishedAt,updatedAt',
         limit: 100,
       },
     });
@@ -25,6 +25,7 @@ async function getAllPostIds() {
 type Post = {
   id: string;
   publishedAt: string;
+  updatedAt: string;
 };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -49,7 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const dynamicRoutes = posts.map((post: Post) => {
     return {
       url: `${siteUrl}/news/${post.id}`,
-      lastModified: new Date(post.publishedAt),
+      lastModified: new Date(post.updatedAt),
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     };

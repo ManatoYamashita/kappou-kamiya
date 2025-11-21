@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
-    apple: "/apple-touch-icon.jpg",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     type: "website",
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
   category: "飲食店",
   classification: "日本料理",
   verification: {
-    google: "Google Search Consoleの認証コードをここに入力",
+    google: "O5tK0KvluMEvB4ik2ItnSy2MV_Nb4glltiMXxCmWlcw",
   },
 };
 
@@ -258,6 +258,11 @@ export default function RootLayout({
       <head>
         {/* <meta name="theme-color" content="#f7f4ed" /> */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        {/* Resource Hints - Preconnect for external domains */}
+        <link rel="preconnect" href="https://images.microcms-assets.io" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://cdn.consentmanager.net" />
+        <link rel="dns-prefetch" href="https://b.delivery.consentmanager.net" />
         <Script
           id="consent-manager"
           src="https://cdn.consentmanager.net/delivery/autoblocking/92a399f462520.js"

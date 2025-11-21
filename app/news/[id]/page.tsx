@@ -81,10 +81,80 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
   // dayjsを使ってpublishedAtをYY.MM.DD形式に変換
   const formattedDate = dayjs(post.publishedAt).format('YYYY年MM月DD日');
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kappou-kamiya.vercel.app';
+
+  // BreadcrumbList 構造化データ
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'ホーム',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'お知らせ',
+        item: `${siteUrl}/news`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: `${siteUrl}/news/${post.id}`,
+      },
+    ],
+  };
+
+  // Article 構造化データ
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    image: post.thumbnail ? post.thumbnail.url : `${siteUrl}/images/kamiya-logo.webp`,
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    author: {
+      '@type': 'Organization',
+      name: '割烹 神谷',
+      url: siteUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: '割烹 神谷',
+      url: siteUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/images/kamiya-logo.webp`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${siteUrl}/news/${post.id}`,
+    },
+    ...(post.category && { articleSection: post.category.name }),
+  };
+
   return (
-    <main className="mx-auto mt-36 px-6 md:px-16 bg-stone-50/80">
-      <ArticleContent post={post} formattedDate={formattedDate} />
-    </main>
+    <>
+      {/* BreadcrumbList 構造化データ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      {/* Article 構造化データ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <main className="mx-auto mt-36 px-6 md:px-16 bg-stone-50/80">
+        <ArticleContent post={post} formattedDate={formattedDate} />
+      </main>
+    </>
   );
 }
 
