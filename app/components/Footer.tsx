@@ -32,7 +32,6 @@ export default function Footer() {
                     ref={videoRef}
                     autoPlay
                     muted
-                    loop
                     playsInline
                     poster="/images/kamiya-logo.webp"
                     className="w-full h-full object-contain"
@@ -60,7 +59,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="font-mincho text-xl mb-4">営業時間</h3>
+            <h3 className="font-mincho text-xl font-bold mb-4">営業時間</h3>
             <p className="text-paper/80 leading-relaxed">
               ランチ: 水～日・祝前日・祝日 11:30～14:30<br />
               ディナー: 火～日・祝前日・祝日 16:00～22:00<br />
@@ -69,13 +68,19 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="font-mincho text-xl mb-4">リンク</h3>
+            <h3 className="font-mincho text-xl font-bold mb-4">リンク</h3>
             <ul className="space-y-2 text-paper/80">
               <li>
                 <Link href="/#concept" className="hover:text-accent transition-colors" aria-label="店舗理念へ移動">店舗理念</Link>
               </li>
               <li>
                 <Link href="/#menu" className="hover:text-accent transition-colors" aria-label="お品書きへ移動">お品書き</Link>
+              </li>
+              <li>
+                <Link href="/news" className="hover:text-accent transition-colors" aria-label="ニュースへ移動">お知らせ</Link>
+              </li>
+              <li>
+                <Link href="/#osechi" className="hover:text-accent transition-colors" aria-label="おせちの購入へ移動">おせちの購入</Link>
               </li>
               <li>
                 <Link href="/#info" className="hover:text-accent transition-colors" aria-label="店舗情報へ移動">店舗情報</Link>

@@ -177,9 +177,9 @@ kappou-kamiya/
 
 ## Development Guidelines
 
-### Next.js 15 & React 19の非同期API
+### Next.js 16 & React 19の非同期API
 
-**重要**: Next.js 15ではいくつかのランタイムAPIが非同期になっています。必ず`await`を使用してください。
+**重要**: Next.js 16ではいくつかのランタイムAPIが非同期になっています。必ず`await`を使用してください。
 
 ```typescript
 // 正しい実装

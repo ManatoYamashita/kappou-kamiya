@@ -6,7 +6,7 @@
 - 外部サービス連携は `libs/microcms.ts` に閉じ込め、`public/` 配下に画像やフォントを置きます。新規モジュールはこの分離を保ち、依存を一方向にしてください。
 
 ## Build, Test, and Development Commands
-- `npm run dev` : ホットリロード付きの開発サーバー (Next 15)。`NEXT_PUBLIC_*` などの環境変数は `.env.local` で定義。
+- `npm run dev` : ホットリロード付きの開発サーバー (Next 16 + Turbopack)。`NEXT_PUBLIC_*` などの環境変数は `.env.local` で定義し、Cache Components 利用時は `cacheLife` 設定も確認。
 - `npm run build` : 本番用最適化ビルド。microCMS への API アクセスに必要なキーが設定されているか検証してください。
 - `npm run start` : `build` 成果物を本番モードで起動し、レンダリングやキャッシュの最終確認を行います。
 - `npm run lint` : ESLint + `eslint-config-next` による静的解析。警告は PR 前にゼロにすること。

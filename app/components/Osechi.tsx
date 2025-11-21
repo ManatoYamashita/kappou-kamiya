@@ -49,16 +49,15 @@ export default function Osechi() {
               <Btn
                 text="おせちを購入する"
                 href={OSECHI_URL}
-                color="white"
+                variant="primary"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-black px-6 py-3 rounded-full shadow-lg text-white hover:bg-black/80 transition-colors"
                 aria-label="おせちを購入する"
               />
             </div>
           </div>
           <div className="md:w-1/2">
-            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
               <div
                 className="absolute inset-0 flex h-full w-full transition-transform duration-700 ease-in-out"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -79,19 +78,35 @@ export default function Osechi() {
               {/* ナビゲーションボタン */}
               <button
                 type="button"
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-2 hover:bg-black/60 transition"
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm text-ink rounded-full w-10 h-10 flex items-center justify-center hover:bg-white transition-all duration-200 shadow-sm hover:shadow-md"
                 onClick={() => setCurrentIndex((prev) => (prev - 1 + OSECHI_IMAGES.length) % OSECHI_IMAGES.length)}
                 aria-label="前の画像"
               >
-                &lt;
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
               </button>
               <button
                 type="button"
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-2 hover:bg-black/60 transition"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm text-ink rounded-full w-10 h-10 flex items-center justify-center hover:bg-white transition-all duration-200 shadow-sm hover:shadow-md"
                 onClick={() => setCurrentIndex((prev) => (prev + 1) % OSECHI_IMAGES.length)}
                 aria-label="次の画像"
               >
-                &gt;
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
               </button>
 
               {/* ドットインジケーター */}

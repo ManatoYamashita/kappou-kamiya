@@ -170,7 +170,7 @@ export default async function News() {
         )}
 
         <div className='my-10 flex justify-end'>
-          <Btn text="すべてのお知らせを見る" href="/news" aria-label="すべてのお知らせを見る" />
+          <Btn text="すべてのお知らせを見る" href="/news" aria-label="すべてのお知らせを見る" variant="default" />
         </div>
       </div>
     </section>

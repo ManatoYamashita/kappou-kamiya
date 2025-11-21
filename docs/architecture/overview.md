@@ -51,7 +51,7 @@
 ## 技術スタック
 
 ### フロントエンド
-- **フレームワーク**: Next.js 15.3.1（App Router）
+- **フレームワーク**: Next.js 16.0.3（App Router + Turbopack）
 - **React**: 19.0.0
 - **言語**: TypeScript 5
 - **スタイリング**: TailwindCSS 4.0
