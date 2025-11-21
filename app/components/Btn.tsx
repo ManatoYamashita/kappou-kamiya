@@ -16,11 +16,11 @@ interface BtnProps {
 
 const variantClasses: Record<BtnVariant, string> = {
   default:
-    'bg-[linear-gradient(90deg,transparent_0%,transparent_50%,#151515_50%)] bg-[length:200%_100%] bg-[position:0_0] text-ink border border-ink hover:bg-[position:100%_0] hover:text-[#f5f5f5] hover:-translate-y-0.5 hover:shadow-md',
+    'bg-[linear-gradient(90deg,transparent_0%,transparent_50%,#151515_50%)] bg-[length:200%_100%] bg-[position:0_0] text-ink border border-ink hover:bg-[position:100%_0] hover:text-[#f5f5f5]',
   primary:
-    'bg-[linear-gradient(90deg,#111111_0%,#111111_50%,#f5f5f5_50%)] bg-[length:200%_100%] bg-[position:0_0] text-[#f5f5f5] border border-[#111111] hover:bg-[position:100%_0] hover:text-[#1a1a1a] hover:-translate-y-0.5 hover:shadow-md',
+    'bg-[linear-gradient(90deg,#111111_0%,#111111_50%,#f5f5f5_50%)] bg-[length:200%_100%] bg-[position:0_0] text-[#f5f5f5] border border-[#111111] hover:bg-[position:100%_0] hover:text-[#1a1a1a]',
   'primary-white':
-    'bg-[linear-gradient(90deg,#f1ecdf_0%,#f1ecdf_50%,#111111_50%)] bg-[length:200%_100%] bg-[position:0_0] text-[#1a1a1a] border border-[#f1ecdf] hover:bg-[position:100%_0] hover:text-[#f5f5f5] hover:-translate-y-0.5 hover:shadow-md'
+    'bg-[linear-gradient(90deg,#f1ecdf_0%,#f1ecdf_50%,#111111_50%)] bg-[length:200%_100%] bg-[position:0_0] text-[#1a1a1a] border border-[#f1ecdf] hover:bg-[position:100%_0] hover:text-[#f5f5f5]'
 };
 
 const Btn: React.FC<BtnProps> = ({

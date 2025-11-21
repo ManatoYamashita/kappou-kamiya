@@ -38,32 +38,21 @@ export default function Header() {
   }, [isHomePage]);
 
   return (
-    <header className={`fixed left-0 right-0 z-50 transition-all duration-500 
-      ${isScrolled ? 'bg-paper/90 backdrop-blur-sm py-3' : 'bg-transparent py-5'} 
+    <header className={`fixed left-0 right-0 z-50 transition-all duration-500
+      ${isScrolled ? 'bg-white/50 backdrop-blur-md py-3' : 'bg-transparent py-5'}
       ${isHomePage && isHeroVisible ? '-top-24 opacity-0' : 'top-0 opacity-100'}`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="relative z-50" aria-label="割烹 神谷 ホームページ">
-          <div className="flex flex-col items-center h-24 w-24">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster="/images/kamiya-logo.webp"
+          <div className="flex flex-col items-center h-16 w-16">
+            <Image
+              src="/images/kamiya-logo.webp"
+              alt="割烹 神谷 ロゴ"
+              width={128}
+              height={128}
               className="w-full h-full object-contain"
-            >
-              <source src="/images/kamiya-logo.webm" type="video/webm" />
-              {/* フォールバック画像（videoがサポートされていない場合） */}
-              <Image
-                src="/images/kamiya-logo.webp"
-                alt="割烹 神谷 ロゴ"
-                width={128}
-                height={128}
-                className="w-full h-full object-contain"
-                priority
-              />
-            </video>
+              priority
+            />
           </div>
         </Link>
 
@@ -104,9 +93,9 @@ export default function Header() {
               { href: '/#osechi', label: 'おせちの購入' },
             ].map((item, index) => (
               <li key={index} className="relative group">
-                <Link 
-                  href={item.href} 
-                  className="py-2 block hover:text-accent transition-colors duration-300"
+                <Link
+                  href={item.href}
+                  className="py-2 block hover:text-accent transition-all duration-300 hover:scale-105"
                   aria-label={item.label}
                   tabIndex={0}
                 >

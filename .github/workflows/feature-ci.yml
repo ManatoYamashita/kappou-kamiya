@@ -1,0 +1,107 @@
+name: Feature CI to PR
+
+on:
+  push:
+    branches:
+      - 'feature/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        id: lint
+        run: npm run lint
+
+      - name: Type check
+        id: typecheck
+        run: npm run typecheck
+
+      - name: Build (Turbopack)
+        id: build
+        run: npm run build:turbopack
+
+      - name: Collect summary
+        id: summary
+        run: |
+          git fetch origin main || true
+          DIFF_STAT=$(git diff --stat origin/main...HEAD || true)
+          LAST_COMMIT=$(git log -1 --pretty=format:'%h %s' || echo "n/a")
+
+          {
+            echo "body<<'EOF'"
+            echo "## CI結果"
+            echo "- Lint: success (\`npm run lint\`)"
+            echo "- TypeCheck: success (\`npm run typecheck\`)"
+            echo "- Build: success (\`npm run build:turbopack\`)"
+            echo ""
+            echo "## 変更サマリ"
+            if [ -n "$DIFF_STAT" ]; then
+              echo "\`\`\`"
+              echo "$DIFF_STAT"
+              echo "\`\`\`"
+            else
+              echo "- 差分なし"
+            fi
+            echo ""
+            echo "## コミット"
+            echo "- HEAD: $LAST_COMMIT"
+            echo ""
+            echo "自動生成されたPRです。"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create PR to main
+        if: startsWith(github.ref, 'refs/heads/feature/')
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const body = `${{ steps.summary.outputs.body }}`;
+            const { owner, repo } = context.repo;
+            const head = context.ref.replace('refs/heads/', '');
+            const base = 'main';
+            const title = `AUTO: ${head} -> ${base}`;
+
+            const existing = await github.rest.pulls.list({
+              owner,
+              repo,
+              state: 'open',
+              head: `${owner}:${head}`,
+              base
+            });
+
+            if (existing.data.length) {
+              core.info(`既存PRを使用: ${existing.data[0].html_url}`);
+              return;
+            }
+
+            const pr = await github.rest.pulls.create({
+              owner,
+              repo,
+              head,
+              base,
+              title,
+              body
+            });
+
+            core.info(`PR created: ${pr.data.html_url}`)

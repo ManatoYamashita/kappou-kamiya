@@ -32,7 +32,6 @@ export default function Footer() {
                     ref={videoRef}
                     autoPlay
                     muted
-                    loop
                     playsInline
                     poster="/images/kamiya-logo.webp"
                     className="w-full h-full object-contain"

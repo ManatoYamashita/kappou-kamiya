@@ -13,8 +13,24 @@ module.exports = {
         'accent': '#8c7851',
       },
       fontFamily: {
-        'mincho': ['var(--font-shippori-mincho)', 'serif'],
-        'sans': ['var(--font-noto-sans)', 'sans-serif'],
+        'mincho': [
+          'var(--font-shippori-mincho)',
+          'var(--font-noto-serif)',
+          '"Yu Mincho"',
+          'YuMincho',
+          '"Hiragino Mincho ProN"',
+          '"Hiragino Mincho Pro"',
+          'serif'
+        ],
+        'sans': [
+          'var(--font-shippori-mincho)',
+          'var(--font-noto-serif)',
+          '"Yu Mincho"',
+          'YuMincho',
+          '"Hiragino Mincho ProN"',
+          '"Hiragino Mincho Pro"',
+          'serif'
+        ],
       },
       spacing: {
         '128': '32rem',

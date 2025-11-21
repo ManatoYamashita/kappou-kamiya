@@ -34,7 +34,6 @@ export default function Hero() {
                 ref={videoRef}
                 autoPlay
                 muted
-                loop
                 playsInline
                 poster="/images/kamiya-logo.webp"
                 className="w-full h-full object-contain"
@@ -80,7 +79,7 @@ export default function Hero() {
                 src="/images/kamiya-cover.webp"
                 alt="割烹 神谷"
                 fill
-                sizes="100vw"
+                sizes="(max-width: 768px) calc(100vw - 2rem), 0px"
                 className="object-cover object-top"
                 priority
                 loading='eager'

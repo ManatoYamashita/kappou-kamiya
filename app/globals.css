@@ -8,8 +8,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-noto-sans);
   --font-mincho: var(--font-shippori-mincho);
+  --font-noto-serif: var(--font-noto-serif);
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -291,4 +291,21 @@ body::after {
   opacity: 0;
   transform: translateY(30px);
   animation: slideUp 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+/* ローディングバーアニメーション */
+@keyframes loadingBar {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-loading-bar {
+  animation: loadingBar 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }

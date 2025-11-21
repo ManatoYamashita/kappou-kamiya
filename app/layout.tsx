@@ -1,24 +1,25 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
+import { Shippori_Mincho, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import { Viewport } from 'next';
 import Header from './components/Header';
 import PageTransition from './components/PageTransition';
 import PageContent from './components/PageContent';
+import LoadingBar from './components/LoadingBar';
 
 // フォント設定
-const notoSans = Noto_Sans_JP({
+const mincho = Shippori_Mincho({
   subsets: ["latin"],
-  variable: "--font-noto-sans",
+  variable: "--font-shippori-mincho",
   display: 'swap',
   preload: true,
   weight: ["400", "500", "700"],
 });
 
-const mincho = Shippori_Mincho({
+const notoSerif = Noto_Serif_JP({
   subsets: ["latin"],
-  variable: "--font-shippori-mincho",
+  variable: "--font-noto-serif",
   display: 'swap',
   preload: true,
   weight: ["400", "500", "700"],
@@ -254,7 +255,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="ja" className={`scroll-smooth ${notoSans.variable} ${mincho.variable}`}>
+    <html lang="ja" className={`scroll-smooth ${mincho.variable} ${notoSerif.variable}`}>
       <head>
         {/* <meta name="theme-color" content="#f7f4ed" /> */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -318,17 +319,18 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${notoSans.variable} ${mincho.variable} font-sans antialiased bg-paper text-ink`}
+        className={`${mincho.variable} ${notoSerif.variable} font-mincho antialiased bg-paper text-ink`}
         suppressHydrationWarning
       >
-        <a 
-          href="#main-content" 
+        <a
+          href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-paper focus:outline-none"
           tabIndex={0}
           aria-label="メインコンテンツにスキップ"
         >
           メインコンテンツにスキップ
         </a>
+        <LoadingBar />
         <Header />
         <PageTransition />
         <PageContent>
