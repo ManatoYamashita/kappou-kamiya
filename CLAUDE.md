@@ -16,8 +16,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Tech Stack
 
-- **Framework**: Next.js 16.0.3 (App Router with Turbopack)
-- **React**: 19.2.0
+- **Framework**: Next.js 16.0.10 (App Router with Turbopack)
+- **React**: 19.2.3
 - **Styling**: TailwindCSS 4.0
 - **Fonts**: Noto Sans JP, Shippori Mincho (Google Fonts)
 - **Animation**: GSAP 3.12.7, Framer Motion 12.8.0

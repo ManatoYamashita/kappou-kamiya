@@ -8,8 +8,8 @@
 三代続く川口の老舗日本料理店「割烹 神谷」の公式ウェブサイト。Next.js 16 + React 19 + TailwindCSS 4を使用した現代的なHeadless CMS統合型Webアプリケーションです。
 
 ### 技術スタック
-- **フレームワーク**: Next.js 16.0.3 (App Router with Turbopack)
-- **React**: 19.2.0
+- **フレームワーク**: Next.js 16.0.10 (App Router with Turbopack)
+- **React**: 19.2.3
 - **スタイリング**: TailwindCSS 4.0
 - **CMS**: MicroCMS
 - **アニメーション**: GSAP 3.12.7, Framer Motion 12.8.0
@@ -258,13 +258,13 @@ Webサイトのパフォーマンスを向上させる戦略です。
 
 ## 🔄 最終更新
 
-**更新日**: 2025-11-20
+**更新日**: 2026-01-01
 
 **更新内容**:
-- Next.js 16.0.3へのアップグレード
-- Turbopackがデフォルトバンドラーに
-- Next.js DevTools MCP統合ドキュメント追加
-- 全20ドキュメントに更新
+- セキュリティパッチ適用（CVE-2025-55182対応）
+- Next.js 16.0.7 → 16.0.10へアップグレード
+- React 19.2.1 → 19.2.3へアップグレード
+- React2Shell脆弱性、DoS攻撃、ソースコード露出の修正
 
 ---
 

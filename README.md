@@ -4,9 +4,9 @@
 
 ![ogp](https://github.com/user-attachments/assets/f6fd26f2-5e5b-4427-b2f1-670f2bcee032)
 
-[![Next.js](https://img.shields.io/badge/Next.js-16.0.3-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.0.10-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.0.0-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
-[![React](https://img.shields.io/badge/React-19.0.0-61DAFB?style=flat&logo=react)](https://reactjs.org/)
+[![React](https://img.shields.io/badge/React-19.2.3-61DAFB?style=flat&logo=react)](https://reactjs.org/)
 
 ## About
 
@@ -75,7 +75,7 @@ npm run dev
 
 ## Tech
 
-- **フレームワーク**: [Next.js 16.0.3](https://nextjs.org/)
+- **フレームワーク**: [Next.js 16.0.10](https://nextjs.org/)
 - **スタイリング**: [TailwindCSS 4](https://tailwindcss.com/)
 - **フォント**: Noto Sans JP, Shippori Mincho (Google Fonts)
 - **アニメーション**: CSS Transitions, Intersection Observer API
