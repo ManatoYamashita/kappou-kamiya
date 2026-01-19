@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from 'react';
 import { Shippori_Mincho, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
@@ -330,7 +331,9 @@ export default function RootLayout({
         >
           メインコンテンツにスキップ
         </a>
-        <LoadingBar />
+        <Suspense fallback={null}>
+          <LoadingBar />
+        </Suspense>
         <Header />
         <PageTransition />
         <PageContent>
