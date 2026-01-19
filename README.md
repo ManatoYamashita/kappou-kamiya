@@ -22,7 +22,7 @@ OGP: ![ogp](https://github.com/user-attachments/assets/f6fd26f2-5e5b-4427-b2f1-6
 - SEO: メタデータ、JSON-LD、OGP、robots.txt
 
 ## 環境構築
-前提: Node.js 18+, npm 9+
+前提: Node.js 22.22.0+, npm 10+
 ```bash
 git clone https://github.com/ManatoYamashita/kappou-kamiya.git
 cd kappou-kamiya

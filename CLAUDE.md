@@ -57,7 +57,8 @@ npm run lint
 Next.js 16では、Turbopackがデフォルトのバンドラーになりました。Webpackを使用する場合は`--webpack`フラグを使用してください。
 
 ### Breaking Changes
-- **Node.js 20.9+**と**TypeScript 5.1+**が必須
+- **Node.js 22.22.0+**（または20.20.0+）と**TypeScript 5.1+**が必須
+- セキュリティ理由により、Node.js 22.22.0以上を強く推奨（CVE-2025-55131, CVE-2025-55130, CVE-2025-59465対応）
 - **`next lint`コマンドの削除**: ESLintを直接使用
 - **Async params**: `params`と`searchParams`に`await`が必要（既に対応済み）
 - **Async utilities**: `cookies()`, `headers()`, `draftMode()`が非同期に

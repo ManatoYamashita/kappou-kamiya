@@ -10,14 +10,43 @@
 
 | ソフトウェア | バージョン | インストール方法 |
 |---|---|---|
-| Node.js | 18以上 | [nodejs.org](https://nodejs.org/) |
-| npm | 9以上 | Node.jsに含まれる |
+| Node.js | 22.22.0以上 | [nodejs.org](https://nodejs.org/) または nvm |
+| npm | 10以上 | Node.jsに含まれる |
 | Git | 最新 | [git-scm.com](https://git-scm.com/) |
 
 ### 推奨ソフトウェア
 
 - **VSCode**: コードエディタ
 - **Chrome**: ブラウザ（DevTools使用）
+
+### Node.jsバージョン管理
+
+#### nvmを使用する場合（推奨）
+```bash
+# nvmのインストール（未インストールの場合）
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+# プロジェクト推奨バージョンの使用
+cd kappou-kamiya
+nvm use  # .nvmrcから自動読み込み
+
+# または明示的にインストール
+nvm install 22.22.0
+nvm use 22.22.0
+```
+
+#### 直接インストールする場合
+1. [Node.js公式サイト](https://nodejs.org/)から22.22.0以上をダウンロード
+2. インストーラーを実行
+3. バージョン確認: `node --version`
+
+#### セキュリティ注意事項
+Node.js 22.22.0未満のバージョンには以下の脆弱性が存在します:
+- **CVE-2025-55131** (CVSS 8.1): Buffer/Uint8Arrayのメモリ漏洩
+- **CVE-2025-55130** (CVSS 7.7): ファイルシステム権限バイパス
+- **CVE-2025-59465** (CVSS 7.5): HTTP/2サーバークラッシュ
+
+**必ず22.22.0以上を使用してください。**
 
 ## セットアップ手順
 
