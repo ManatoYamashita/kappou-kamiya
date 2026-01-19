@@ -121,6 +121,12 @@ Webサイトのパフォーマンスを向上させる戦略です。
 
 セキュリティ対応と脆弱性修正の記録です。
 
+- **[Next.js CVE-2025-66478 緊急対応](./security/cve-2025-66478.md)** ⚠️ Critical
+  - CVE-2025-66478: React Server Components RCE（CVSS 10.0）
+  - Next.js 16.0.3 → 16.1.3への緊急更新
+  - Vercelデプロイブロック解除
+  - 実際の攻撃事例と対応手順
+
 - **[Node.js December 2025 Security](./security/nodejs-december-2025.md)**
   - CVE-2025-55131, CVE-2025-55130, CVE-2025-59465対応
   - Node.js 22.22.0以上への更新
@@ -268,11 +274,11 @@ Webサイトのパフォーマンスを向上させる戦略です。
 | Styling | 1 |
 | Performance | 1 |
 | SEO | 1 |
-| Security | 1 |
+| Security | 2 |
 | Deployment | 1 |
 | Development | 1 |
 | Troubleshooting | 1 |
-| **合計** | **21** |
+| **合計** | **22** |
 
 ---
 
@@ -281,6 +287,12 @@ Webサイトのパフォーマンスを向上させる戦略です。
 **更新日**: 2026-01-19
 
 **更新内容**:
+- **🚨 緊急セキュリティ:** CVE-2025-66478（CVSS 10.0 Critical）対応
+  - Next.js 16.0.3 → 16.1.3への緊急更新
+  - React Server Components RCE脆弱性修正
+  - Vercelデプロイブロック解除
+  - 実際の攻撃事例（中国MSS関連）への対応
+  - 詳細ドキュメント（`docs/security/cve-2025-66478.md`）追加
 - **セキュリティ:** Node.js December 2025セキュリティリリース対応ドキュメント追加
 - **環境:** Node.js 22.22.0以上への更新（CVE-2025-55131, CVE-2025-55130, CVE-2025-59465対応）
 - **CI/CD:** GitHub ActionsのNode.jsバージョンを22.22.0に固定
