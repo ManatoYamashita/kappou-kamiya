@@ -1,24 +1,23 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useHydrated } from '@/app/hooks/useHydrated';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useHydrated();
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // 動画の自動再生設定（iOS対応。動画はハイドレーション後に描くため、その後に再生する）
   useEffect(() => {
-    setIsMounted(true);
-
-    // 動画の自動再生設定（iOS対応）
-    if (videoRef.current) {
+    if (isMounted && videoRef.current) {
       videoRef.current.play().catch(error => {
         console.error('Footer logo video autoplay failed:', error);
       });
     }
-  }, []);
+  }, [isMounted]);
   
   return (
     <footer className="bg-ink text-paper py-12">

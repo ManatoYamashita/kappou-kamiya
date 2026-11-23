@@ -14,54 +14,63 @@ export default function PageContent({ children }: { children: React.ReactNode })
   
   // ページコンテンツのアニメーション
   useEffect(() => {
-    if (!contentRef.current) return;
-    
-    // ルートパスの場合は即座に表示
+    const content = contentRef.current;
+    if (!content) return;
+
+    // アニメーション完了時に確実にスクロールを有効にする
+    const enableScroll = () => {
+      document.documentElement.classList.remove('is-changing');
+    };
+
+    // ルートパスの場合は即座に表示（is-loaded は isRootPath から決まる）
     if (isRootPath) {
-      gsap.set(contentRef.current, { 
+      gsap.set(content, {
         opacity: 1,
         scale: 1,
         y: 0
       });
-      setIsLoaded(true);
-      document.documentElement.classList.remove('is-changing');
+      enableScroll();
       return;
     }
-    
+
+    // 完了の記録。isLoaded を依存に入れると、完了で effect が再実行されてアニメーションが 2 回走るため、
+    // このページ表示の中だけで持つ。
+    let completed = false;
+    const complete = () => {
+      completed = true;
+      setIsLoaded(true);
+      enableScroll();
+    };
+
     // 初期状態
-    gsap.set(contentRef.current, { 
+    gsap.set(content, {
       opacity: 0.01,
       scale: 1.1,
       y: 50
     });
-    
+
     // フェードインアニメーション
-    gsap.to(contentRef.current, {
+    gsap.to(content, {
       opacity: 1,
       scale: 1,
       y: 0,
       duration: 1,
       delay: 1, // ページトランジションが終わった後にフェードイン
       ease: 'power2.out',
-      onComplete: () => {
-        setIsLoaded(true);
-        // アニメーション完了時に確実にスクロールを有効にする
-        document.documentElement.classList.remove('is-changing');
-      }
+      onComplete: complete
     });
-    
+
     // セーフティタイマー - アニメーションが何らかの理由で完了しなかった場合のバックアップ
     const enableScrollTimer = setTimeout(() => {
-      if (!isLoaded) {
-        setIsLoaded(true);
-        document.documentElement.classList.remove('is-changing');
+      if (!completed) {
+        complete();
       }
     }, 2000);
-    
+
     return () => {
       clearTimeout(enableScrollTimer);
     };
-  }, [pathname, isLoaded, isRootPath]);
+  }, [pathname, isRootPath]);
   
   return (
     <div 

@@ -44,6 +44,8 @@ app/
 │   └── PageTransition.tsx       # ページ遷移制御
 ├── data/                         # 静的データ
 │   └── menu.ts                  # メニューデータ（型定義含む）
+├── hooks/                        # カスタムフック
+│   └── useHydrated.ts           # ハイドレーション完了の判定（effect 内の setState の代わり）
 ├── news/                         # ニュースページ
 │   ├── page.tsx                 # ニュース一覧ページ
 │   └── [id]/                    # 動的ルート（ニュース詳細）
@@ -164,8 +166,10 @@ TypeScriptの設定ファイル。
 ESLintの設定ファイル。
 
 **主な設定項目**:
-- Next.js推奨ルール（`next/core-web-vitals`）
-- TypeScript対応（`next/typescript`）
+- Flat Config 形式。`eslint-config-next` 16 が配布する Flat Config を直接読み込む（`FlatCompat` は使わない）
+- Next.js推奨ルール（`eslint-config-next/core-web-vitals`）
+- TypeScript対応（`eslint-config-next/typescript`）
+- `.next/`・`out/`・`build/`・`next-env.d.ts` は対象外
 
 ### postcss.config.mjs
 PostCSSの設定ファイル。

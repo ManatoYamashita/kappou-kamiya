@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useSyncExternalStore } from 'react';
 import Image from 'next/image';
 
 // 外部ファイルからメニューデータをインポート
@@ -9,6 +9,23 @@ import {
   menuCategories, 
   type MenuCategory 
 } from '@/app/data/menu';
+
+// 画面幅が狭い（768px 未満）かを、React の外にある状態として購読する。
+const COMPACT_BREAKPOINT = 768;
+
+function subscribeViewport(onChange: () => void) {
+  window.addEventListener('resize', onChange);
+  return () => window.removeEventListener('resize', onChange);
+}
+
+function getIsCompactViewport(): boolean {
+  return window.innerWidth < COMPACT_BREAKPOINT;
+}
+
+// サーバー描画とハイドレーションの時点では、広い画面として描く（従来の初期値 false と同じ）。
+function getIsCompactViewportOnServer(): boolean {
+  return false;
+}
 
 export default function Menu() {
   // スクロールアニメーション用のref
@@ -21,40 +38,18 @@ export default function Menu() {
   // 表示するメニューアイテムを抽出
   const filteredMenuItems = allMenuItems.filter(item => item.category === activeCategory);
   
-  // 画面幅に応じてボタンの表示方法を変更する状態 - 初期値は常にfalseに設定
-  const [useCompactButtons, setUseCompactButtons] = useState<boolean>(false);
+  // 画面幅に応じてボタンの表示方法を変更する（リサイズにも追従する）
+  const useCompactButtons = useSyncExternalStore(
+    subscribeViewport,
+    getIsCompactViewport,
+    getIsCompactViewportOnServer
+  );
   
   // カテゴリー変更時のトランジション効果のための状態
   const [isChanging, setIsChanging] = useState<boolean>(false);
   
   // スクロール可能かどうかの状態
   const [canScrollRight, setCanScrollRight] = useState<boolean>(false);
-  
-  // コンポーネントマウント時に一度だけ実行するクライアントサイド初期化
-  useEffect(() => {
-    // クライアントサイドでのみ実行
-    setUseCompactButtons(window.innerWidth < 768);
-  }, []);
-  
-  // 画面幅の監視
-  useEffect(() => {
-    // リサイズイベントのハンドラー
-    const handleResize = () => {
-      const isCompact = window.innerWidth < 768;
-      // 現在の値と同じなら更新しない（無限ループ防止）
-      if (useCompactButtons !== isCompact) {
-        setUseCompactButtons(isCompact);
-      }
-    };
-    
-    // リサイズイベントのリスナーを追加
-    window.addEventListener('resize', handleResize);
-    
-    // クリーンアップ
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [useCompactButtons]);
   
   // ページ表示時のアニメーション用
   useEffect(() => {
@@ -78,10 +73,8 @@ export default function Menu() {
     };
   }, []);
   
-  // カテゴリー変更時の処理 - アニメーションを追加
+  // カテゴリー変更時の処理 - トランジションを終える（開始は handleCategoryChange で行う）
   useEffect(() => {
-    // カテゴリー変更時のトランジション効果
-    setIsChanging(true);
     const timer = setTimeout(() => setIsChanging(false), 300);
     
     // カテゴリー変更時にスクロール位置をリセット
@@ -128,6 +121,8 @@ export default function Menu() {
   // カテゴリー変更ハンドラー
   const handleCategoryChange = (category: MenuCategory) => {
     if (category !== activeCategory) {
+      // カテゴリー変更時のトランジション効果を始める
+      setIsChanging(true);
       setActiveCategory(category);
     }
   };
