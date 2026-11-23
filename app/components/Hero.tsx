@@ -1,26 +1,25 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Btn from './Btn';
+import { useHydrated } from '@/app/hooks/useHydrated';
 
 const OSECHI_URL = 'https://kamiya.base.ec/categories/4774666';
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useHydrated();
 
+  // 動画の自動再生設定（動画はハイドレーション後に描くため、その後に再生する）
   useEffect(() => {
-    setIsMounted(true);
-
-    // 動画の自動再生設定
-    if (videoRef.current) {
+    if (isMounted && videoRef.current) {
       videoRef.current.play().catch(error => {
         console.error('自動再生できませんでした:', error);
       });
     }
-  }, []);
+  }, [isMounted]);
 
   return (
     <section id="hero-section" className="flex flex-col md:flex-row min-h-screen bg-paper">
