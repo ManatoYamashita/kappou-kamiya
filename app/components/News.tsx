@@ -135,7 +135,10 @@ export default async function News() {
                         alt={post.title}
                         fill
                         className='object-cover group-hover:scale-105 transition-transform duration-300'
-                        sizes="(max-width: 768px) 100vw, 128px"
+                        // md 以上は 128x96px の枠。object-cover のため横長のサムネイル（OGP 画像など 2:1 前後）は
+                        // 高さ 96px に合わせて約 192px 幅で描画される。md 未満はカード幅いっぱいで、
+                        // container（640px 以上で max-width 640px）の px-4 とカードの p-4 を引いた幅になる。
+                        sizes="(min-width: 768px) 192px, (min-width: 640px) 576px, calc(100vw - 64px)"
                         loading="lazy"
                         decoding="async"
                         quality={75}

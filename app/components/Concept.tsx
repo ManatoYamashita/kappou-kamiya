@@ -54,7 +54,8 @@ export default function Concept() {
                   alt="三代続く川口の老舗日本料理店"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 58vw"
+                  // md 以上は 12 カラム中 7 カラム（scale-110 込みで約 60vw）、max-w-6xl のため 720px が上限
+                  sizes="(min-width: 1200px) 720px, (min-width: 768px) 60vw, 100vw"
                 />
               </div>
             </div>
