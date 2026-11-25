@@ -69,7 +69,9 @@ export default function Osechi() {
                       alt={image.alt}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      // 実測した表示幅: md 以上は container 内の 2 カラム（gap-10）の片側、
+                      // md 未満は container の px-4 を引いた全幅。
+                      sizes="(min-width: 1280px) 556px, (min-width: 1024px) 476px, (min-width: 768px) 348px, (min-width: 640px) 608px, calc(100vw - 32px)"
                     />
                   </div>
                 ))}
